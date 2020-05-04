@@ -8,7 +8,10 @@
              Title="Products">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
+            <Label Text="DADI_DODO"
+                   FontSize="56"
+                   FontAttributes="Bold"
+                   TextColor="Violet"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
         </StackLayout>

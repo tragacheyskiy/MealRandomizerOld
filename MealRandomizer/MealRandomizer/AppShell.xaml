@@ -1,11 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Shell xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:local="clr-namespace:MealRandomizer.Views"
-             mc:Ignorable="d"
-             x:Class="MealRandomizer.AppShell">
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+       xmlns:local="clr-namespace:MealRandomizer.Views"
+       mc:Ignorable="d"
+       x:Class="MealRandomizer.AppShell"
+       Shell.TabBarBackgroundColor="WhiteSmoke"
+       Shell.TabBarUnselectedColor="Gray"
+       Shell.TabBarForegroundColor="{StaticResource DiamondGreen}"
+       Shell.TabBarTitleColor="{StaticResource DiamondGreen}"
+       Shell.BackgroundColor="{StaticResource DiamondGreen}">
+    
+    <Shell.Resources>
+        <ResourceDictionary>
+            <Color x:Key="DiamondGreen">#26A69A</Color>
+        </ResourceDictionary>
+    </Shell.Resources>
+
     <TabBar Title="TESTING">
         <Tab Title="Menu" Icon="menu.png">
             <ShellContent ContentTemplate="{DataTemplate local:ProductsViewPage}"/>
