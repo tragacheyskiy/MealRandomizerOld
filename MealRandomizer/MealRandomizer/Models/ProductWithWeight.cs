@@ -1,4 +1,4 @@
-﻿namespace FoodRandom.Model
+﻿namespace MealRandomizer.Models
 {
     public class ProductWithWeight
     {

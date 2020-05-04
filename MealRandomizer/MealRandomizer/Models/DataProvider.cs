@@ -4,7 +4,7 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 
-namespace FoodRandom.Model
+namespace MealRandomizer.Models
 {
     public static class DataProvider
     {

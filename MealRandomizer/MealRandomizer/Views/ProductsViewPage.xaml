@@ -6,14 +6,58 @@
              mc:Ignorable="d"
              x:Class="MealRandomizer.Views.ProductsViewPage"
              Title="Products">
+    
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="DADI_DODO"
-                   FontSize="56"
-                   FontAttributes="Bold"
-                   TextColor="Violet"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+        <StackLayout Spacing="0"
+                     Margin="20">
+            <CollectionView ItemsSource="{Binding Products}"
+                            ItemSizingStrategy="MeasureFirstItem"
+                            RemainingItemsThreshold="15"
+                            RemainingItemsThresholdReachedCommand="{Binding LoadMoreProductsCommand}"
+                            VerticalScrollBarVisibility="Always">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical"
+                                       SnapPointsType="Mandatory"
+                                       SnapPointsAlignment="Start" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Spacing="0">
+                            <Label Text="{Binding Name}"
+                                   BackgroundColor="Gray"
+                                   TextColor="White"
+                                   Padding="20,0"
+                                   FontSize="16"
+                                   FontAttributes="Italic"/>
+                            <Grid RowSpacing="0"
+                                  ColumnSpacing="0"
+                                  BackgroundColor="DarkGray"
+                                  Padding="20, 0"
+                                  Margin="0,0,0,10">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Text="Calories:"
+                                       TextColor="Black"
+                                       FontSize="14"
+                                       HorizontalTextAlignment="Center"
+                                       Grid.Row="0"
+                                       Grid.Column="0"/>
+                                <Label Text="{Binding Calories}"
+                                       TextColor="Green"
+                                       FontSize="14"
+                                       HorizontalTextAlignment="Center"
+                                       Grid.Row="0"
+                                       Grid.Column="1"/>
+                            </Grid>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

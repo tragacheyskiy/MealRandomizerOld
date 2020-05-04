@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace FoodRandom.Model
+namespace MealRandomizer.Models
 {
     [Serializable]
     public struct Nutrients

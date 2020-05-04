@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace FoodRandom.Model
+namespace MealRandomizer.Models
 {
     [Serializable]
     public class Recipe : IEquatable<Recipe>
