@@ -6,7 +6,6 @@
        xmlns:local="clr-namespace:MealRandomizer.Views"
        mc:Ignorable="d"
        x:Class="MealRandomizer.AppShell"
-       Shell.TabBarBackgroundColor="WhiteSmoke"
        Shell.TabBarUnselectedColor="Gray"
        Shell.TabBarForegroundColor="{StaticResource DiamondGreen}"
        Shell.TabBarTitleColor="{StaticResource DiamondGreen}"
@@ -26,7 +25,7 @@
             <ShellContent ContentTemplate="{DataTemplate local:ProductsViewPage}"/>
         </Tab>
         <Tab Title="Products" Icon="products.png">
-            <ShellContent ContentTemplate="{DataTemplate local:ProductsViewPage}"/>
+            <ShellContent ContentTemplate="{DataTemplate local:ProductCategoriesViewPage}"/>
         </Tab>
         <Tab Title="User" Icon="user.png">
             <ShellContent ContentTemplate="{DataTemplate local:UserViewPage}"/>

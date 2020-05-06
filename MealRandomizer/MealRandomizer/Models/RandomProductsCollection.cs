@@ -15,6 +15,11 @@ namespace MealRandomizer.Models
             Products = GetRandomProducts(amount);
         }
 
+        public async Task<List<Product>> GetProductsByCategoryAsync(ProductCategory category)
+        {
+            return await Task.FromResult(new List<Product>(GetProductsByCategory(category)));
+        }
+
         public async Task<List<Product>> GetProductsAsync()
         {
             return await Task.FromResult(Products);
@@ -33,6 +38,19 @@ namespace MealRandomizer.Models
         public async Task<bool> UpdateProductAsync(Product product)
         {
             return await Task.FromResult(RemoveProduct(product) && AddProduct(product));
+        }
+
+        private IEnumerable<Product> GetProductsByCategory(ProductCategory category)
+        {
+            if (category == ProductCategory.ALL)
+            {
+                return Products;
+            }
+            var productsByCategory = from product in Products
+                                     where product.Category == category
+                                     orderby product.Name
+                                     select product;
+            return productsByCategory;
         }
 
         private bool AddProduct(Product product)
@@ -70,8 +88,9 @@ namespace MealRandomizer.Models
                     str += (char)rndm.Next('a', 'z' + 1);
                 }
                 Nutrients nutrients = new Nutrients(rndm.Next(10, 100), rndm.Next(10, 100), rndm.Next(10, 100), rndm.Next(10, 500));
-                products.Add(new Product(str, (ProductCategories)rndm.Next(0, 8), nutrients));
+                products.Add(new Product(str, (ProductCategory)rndm.Next(1, 15), nutrients));
             }
+            products.Sort();
             return products;
         }
     }

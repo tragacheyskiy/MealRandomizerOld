@@ -5,16 +5,21 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="MealRandomizer.Views.ProductsViewPage"
-             Title="Products">
-    
+             Title="{Binding Category}">
     <ContentPage.Content>
-        <StackLayout Spacing="0"
-                     Margin="20">
+        <StackLayout Spacing="0">
+            <Label Text="Продукт    Б г    Ж г    У г    К кКал."
+                   TextColor="White"
+                   FontAttributes="Bold"
+                   FontSize="16"
+                   BackgroundColor="#26A69A"
+                   Padding="40,0"/>
             <CollectionView ItemsSource="{Binding Products}"
                             ItemSizingStrategy="MeasureFirstItem"
-                            RemainingItemsThreshold="15"
+                            RemainingItemsThreshold="10"
                             RemainingItemsThresholdReachedCommand="{Binding LoadMoreProductsCommand}"
-                            VerticalScrollBarVisibility="Always">
+                            VerticalScrollBarVisibility="Always"
+                            Margin="20,0">
                 <CollectionView.ItemsLayout>
                     <LinearItemsLayout Orientation="Vertical"
                                        SnapPointsType="Mandatory"
@@ -54,6 +59,9 @@
                                        Grid.Row="0"
                                        Grid.Column="1"/>
                             </Grid>
+                            <Label Text="{Binding Category}"
+                                   FontSize="14"
+                                   TextColor="Blue"/>
                         </StackLayout>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
