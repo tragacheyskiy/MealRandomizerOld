@@ -1,15 +1,15 @@
-﻿using System;
+﻿using MealRandomizer.Models;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace MealRandomizer
 {
     public partial class App : Application
     {
+        internal static RandomProductsCollection RandomProductsCollection { get; } = new RandomProductsCollection(1000);
+
         public App()
         {
             InitializeComponent();
-
             MainPage = new AppShell();
         }
 

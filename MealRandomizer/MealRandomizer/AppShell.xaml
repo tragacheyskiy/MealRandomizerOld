@@ -3,14 +3,13 @@
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
        xmlns:d="http://xamarin.com/schemas/2014/forms/design"
        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-       xmlns:local="clr-namespace:MealRandomizer.Views"
+       xmlns:views="clr-namespace:MealRandomizer.Views"
        mc:Ignorable="d"
        x:Class="MealRandomizer.AppShell"
-       Shell.TabBarBackgroundColor="WhiteSmoke"
        Shell.TabBarUnselectedColor="Gray"
        Shell.TabBarForegroundColor="{StaticResource DiamondGreen}"
        Shell.TabBarTitleColor="{StaticResource DiamondGreen}"
-       Shell.BackgroundColor="{StaticResource DiamondGreen}">
+       Shell.BackgroundColor="Transparent">
     
     <Shell.Resources>
         <ResourceDictionary>
@@ -20,16 +19,16 @@
 
     <TabBar Title="TESTING">
         <Tab Title="Menu" Icon="menu.png">
-            <ShellContent ContentTemplate="{DataTemplate local:ProductsViewPage}"/>
+            <ShellContent ContentTemplate="{DataTemplate views:ProductsViewPage}"/>
         </Tab>
         <Tab Title="Recipes" Icon="recipes.png">
-            <ShellContent ContentTemplate="{DataTemplate local:ProductsViewPage}"/>
+            <ShellContent ContentTemplate="{DataTemplate views:ProductsViewPage}"/>
         </Tab>
         <Tab Title="Products" Icon="products.png">
-            <ShellContent ContentTemplate="{DataTemplate local:ProductsViewPage}"/>
+            <ShellContent ContentTemplate="{DataTemplate views:ProductCategoriesViewPage}"/>
         </Tab>
         <Tab Title="User" Icon="user.png">
-            <ShellContent ContentTemplate="{DataTemplate local:UserViewPage}"/>
+            <ShellContent ContentTemplate="{DataTemplate views:UserViewPage}"/>
         </Tab>
     </TabBar>
 </Shell>
