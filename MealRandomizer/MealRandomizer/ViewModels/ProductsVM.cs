@@ -1,39 +1,38 @@
-﻿using MealRandomizer.Models;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using MealRandomizer.Models;
 
 namespace MealRandomizer.ViewModels
 {
     public class ProductsVM
     {
-        private List<Product> ProductsSourse { get; set; }
-        private const int COUNT_PER_LOAD = 40;
+        private static List<Product> ProductsSourse { get; } = new RandomProductsCollection(10000).GetProductsAsync().Result;
+        private const int COUNT_PER_LOAD = 30;
         private int productsCurrentIndex = 0;
         private int productsMaxCount = COUNT_PER_LOAD;
 
-        public ImageSource Image { get; } = ImageSource.FromResource("MealRandomizer.ProductCategoryPics.nuts.jpg");
-        public string Category { get; private set; }
         public ObservableCollection<ProductVM> Products { get; private set; }
         public Command LoadMoreProductsCommand => new Command(async () => await Task.Run(LoadProducts));
 
-        public ProductsVM(ProductCategory category)
+        public ProductsVM()
         {
-            Products = new ObservableCollection<ProductVM>();
-            Initialize(category);
+            Initialize();
         }
 
-        private async void Initialize(ProductCategory category)
+        private async void Initialize()
         {
-            ProductsSourse = await App.RandomProductsCollection.GetProductsByCategoryAsync(category);
-            Category = $"{CategoryTranslator.Instance.GetTranslatedName(category)} ({ProductsSourse.Count})";
-            await Task.Run(LoadProducts);
+            Products = new ObservableCollection<ProductVM>();
+            await Task.Run(LoadProducts); 
         }
 
         private void LoadProducts()
         {
-            while (productsCurrentIndex < productsMaxCount && productsCurrentIndex < ProductsSourse.Count)
+            while(productsCurrentIndex < productsMaxCount && productsCurrentIndex < ProductsSourse.Count)
             {
                 Products.Add(new ProductVM(ProductsSourse[productsCurrentIndex++]));
             }

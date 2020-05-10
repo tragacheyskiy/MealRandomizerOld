@@ -6,10 +6,10 @@ namespace MealRandomizer.Models
     public class Product : IComparable<Product>, IEquatable<Product>
     {
         public string Name { get; }
-        public ProductCategory Category { get; }
+        public ProductCategories Category { get; }
         public Nutrients NutrientsPerHundredGrams { get; }
 
-        public Product(string name, ProductCategory category, Nutrients nutrientsPerHundredGrams)
+        public Product(string name, ProductCategories category, Nutrients nutrientsPerHundredGrams)
         {
             Name = name.ToUpperInvariant();
             Category = category;
