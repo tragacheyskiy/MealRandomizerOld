@@ -11,18 +11,71 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="ProductCategoryPics\bake.jpg" />
+    <None Remove="ProductCategoryPics\bean.jpg" />
+    <None Remove="ProductCategoryPics\chocolate.jpg" />
+    <None Remove="ProductCategoryPics\dairy_products.jpg" />
+    <None Remove="ProductCategoryPics\drinks.jpg" />
+    <None Remove="ProductCategoryPics\eggs.jpg" />
+    <None Remove="ProductCategoryPics\fruits_and_berries.jpg" />
+    <None Remove="ProductCategoryPics\grain.jpg" />
+    <None Remove="ProductCategoryPics\meat.jpg" />
+    <None Remove="ProductCategoryPics\meat_products.jpg" />
+    <None Remove="ProductCategoryPics\mushrooms.jpg" />
+    <None Remove="ProductCategoryPics\nuts.jpg" />
+    <None Remove="ProductCategoryPics\oil.jpg" />
+    <None Remove="ProductCategoryPics\pasta.jpg" />
+    <None Remove="ProductCategoryPics\seafood.jpg" />
+    <None Remove="ProductCategoryPics\vegetables.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="ProductCategoryPics\bake.jpg" />
+    <EmbeddedResource Include="ProductCategoryPics\bean.jpg" />
+    <EmbeddedResource Include="ProductCategoryPics\chocolate.jpg" />
+    <EmbeddedResource Include="ProductCategoryPics\dairy_products.jpg" />
+    <EmbeddedResource Include="ProductCategoryPics\drinks.jpg" />
+    <EmbeddedResource Include="ProductCategoryPics\eggs.jpg" />
+    <EmbeddedResource Include="ProductCategoryPics\seafood.jpg" />
+    <EmbeddedResource Include="ProductCategoryPics\fruits_and_berries.jpg" />
+    <EmbeddedResource Include="ProductCategoryPics\grain.jpg" />
+    <EmbeddedResource Include="ProductCategoryPics\meat.jpg" />
+    <EmbeddedResource Include="ProductCategoryPics\meat_products.jpg" />
+    <EmbeddedResource Include="ProductCategoryPics\mushrooms.jpg" />
+    <EmbeddedResource Include="ProductCategoryPics\nuts.jpg" />
+    <EmbeddedResource Include="ProductCategoryPics\oil.jpg" />
+    <EmbeddedResource Include="ProductCategoryPics\pasta.jpg" />
+    <EmbeddedResource Include="ProductCategoryPics\vegetables.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Xamarin.Forms" Version="4.6.0.726" />
     <PackageReference Include="Xamarin.Essentials" Version="1.5.3.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Views\CategoriesPage.xaml.cs">
+      <DependentUpon>CategoriesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\ProductsPage.xaml.cs">
+      <DependentUpon>ProductsPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\UserPage.xaml.cs">
+      <DependentUpon>UserPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Update="AppShell.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\ProductsViewPage.xaml">
+    <EmbeddedResource Update="Views\CategoriesPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\UserViewPage.xaml">
+    <EmbeddedResource Update="Views\ProductsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\UserPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
