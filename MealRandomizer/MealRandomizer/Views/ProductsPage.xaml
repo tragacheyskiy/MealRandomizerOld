@@ -5,7 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:MealRandomizer.Service"
              mc:Ignorable="d"
-             x:Class="MealRandomizer.Views.ProductsViewPage"
+             x:Class="MealRandomizer.Views.ProductsPage"
              Title="{Binding Category}"
              Shell.PresentationMode="Modal">
     <ContentPage.Content>

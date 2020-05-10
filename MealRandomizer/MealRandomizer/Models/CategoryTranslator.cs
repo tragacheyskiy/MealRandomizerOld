@@ -5,7 +5,7 @@ namespace MealRandomizer.Models
 {
     public sealed class CategoryTranslator
     {
-        private static readonly Lazy<CategoryTranslator> lazy = new Lazy<CategoryTranslator>();
+        private static readonly Lazy<CategoryTranslator> lazy = new Lazy<CategoryTranslator>(() => new CategoryTranslator());
 
         private CategoryTranslator() { }
 
@@ -33,7 +33,7 @@ namespace MealRandomizer.Models
                     ProductCategory.PASTA => "МАКАРОНЫ",
                     ProductCategory.SEAFOOD => "МОРЕПРОДУКТЫ",
                     ProductCategory.VEGETABLES => "ОВОЩИ",
-                    _ => ""
+                    _ => "ALL"
                 };
             }
             else

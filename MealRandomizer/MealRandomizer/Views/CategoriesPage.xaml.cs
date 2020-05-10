@@ -6,7 +6,7 @@ using Xamarin.Forms.Xaml;
 namespace MealRandomizer.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ProductCategoriesViewPage : ContentPage
+    public partial class CategoriesPage : ContentPage
     {
         public CategoriesVM ProductCategoriesViewModel
         {
@@ -18,12 +18,12 @@ namespace MealRandomizer.Views
         {
             if (categoriesCollectionView.SelectedItem is CategoryVM categoryVM)
             {
-                await Navigation.PushAsync(new ProductsViewPage(categoryVM.GetCategory()));
+                await Navigation.PushAsync(new ProductsPage(categoryVM.GetCategory()));
                 categoriesCollectionView.SelectedItem = null;
             }
         });
 
-        public ProductCategoriesViewPage()
+        public CategoriesPage()
         {
             InitializeComponent();
             ProductCategoriesViewModel = new CategoriesVM();

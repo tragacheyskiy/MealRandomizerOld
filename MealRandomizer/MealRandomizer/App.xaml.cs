@@ -1,4 +1,5 @@
 ﻿using MealRandomizer.Models;
+using MealRandomizer.Views;
 using Xamarin.Forms;
 
 namespace MealRandomizer

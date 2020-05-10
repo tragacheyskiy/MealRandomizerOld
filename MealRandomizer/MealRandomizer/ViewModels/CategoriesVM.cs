@@ -1,6 +1,7 @@
 ﻿using MealRandomizer.Models;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using Xamarin.Forms;
 
@@ -26,7 +27,7 @@ namespace MealRandomizer.ViewModels
             {
                 ProductCategory category = (ProductCategory)categoryValue--;
                 string imagePath = $"{IMAGE_PATH}{category.ToString().ToLowerInvariant()}.jpg";
-                sourse.Add(new CategoryVM(category, ImageSource.FromFile(imagePath)));
+                sourse.Add(new CategoryVM(category, ImageSource.FromResource(imagePath)));
             }
             Categories = new ObservableCollection<CategoryVM>(sourse.OrderBy(category => category.Category));
         }

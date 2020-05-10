@@ -19,16 +19,16 @@
 
     <TabBar Title="TESTING">
         <Tab Title="Menu" Icon="menu.png">
-            <ShellContent ContentTemplate="{DataTemplate views:ProductsViewPage}"/>
+            <ShellContent ContentTemplate="{DataTemplate views:ProductsPage}"/>
         </Tab>
         <Tab Title="Recipes" Icon="recipes.png">
-            <ShellContent ContentTemplate="{DataTemplate views:ProductsViewPage}"/>
+            <ShellContent ContentTemplate="{DataTemplate views:ProductsPage}"/>
         </Tab>
         <Tab Title="Products" Icon="products.png">
-            <ShellContent ContentTemplate="{DataTemplate views:ProductCategoriesViewPage}"/>
+            <ShellContent ContentTemplate="{DataTemplate views:CategoriesPage}"/>
         </Tab>
         <Tab Title="User" Icon="user.png">
-            <ShellContent ContentTemplate="{DataTemplate views:UserViewPage}"/>
+            <ShellContent ContentTemplate="{DataTemplate views:UserPage}"/>
         </Tab>
     </TabBar>
 </Shell>

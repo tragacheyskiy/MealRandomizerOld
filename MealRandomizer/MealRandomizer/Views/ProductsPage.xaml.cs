@@ -6,7 +6,7 @@ using Xamarin.Forms.Xaml;
 namespace MealRandomizer.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ProductsViewPage : ContentPage
+    public partial class ProductsPage : ContentPage
     {
         public ProductsVM ProductsVM
         {
@@ -14,13 +14,13 @@ namespace MealRandomizer.Views
             set => BindingContext = value;
         }
 
-        public ProductsViewPage()
+        public ProductsPage()
         {
             InitializeComponent();
             ProductsVM = new ProductsVM(ProductCategory.ALL);
         }
 
-        public ProductsViewPage(ProductCategory category)
+        public ProductsPage(ProductCategory category)
         {
             InitializeComponent();
             ProductsVM = new ProductsVM(category);

@@ -36,7 +36,6 @@
     <EmbeddedResource Include="ProductCategoryPics\dairy_products.jpg" />
     <EmbeddedResource Include="ProductCategoryPics\drinks.jpg" />
     <EmbeddedResource Include="ProductCategoryPics\eggs.jpg" />
-    <EmbeddedResource Include="ProductCategoryPics\seafood.jpg" />
     <EmbeddedResource Include="ProductCategoryPics\fruits_and_berries.jpg" />
     <EmbeddedResource Include="ProductCategoryPics\grain.jpg" />
     <EmbeddedResource Include="ProductCategoryPics\meat.jpg" />
@@ -45,6 +44,7 @@
     <EmbeddedResource Include="ProductCategoryPics\nuts.jpg" />
     <EmbeddedResource Include="ProductCategoryPics\oil.jpg" />
     <EmbeddedResource Include="ProductCategoryPics\pasta.jpg" />
+    <EmbeddedResource Include="ProductCategoryPics\seafood.jpg" />
     <EmbeddedResource Include="ProductCategoryPics\vegetables.jpg" />
   </ItemGroup>
 
@@ -66,9 +66,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="AppShell.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
     <EmbeddedResource Update="Views\CategoriesPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
