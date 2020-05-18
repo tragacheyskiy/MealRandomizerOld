@@ -6,6 +6,8 @@
              mc:Ignorable="d"
              x:Class="MealRandomizer.App">
     <Application.Resources>
-
+        <ResourceDictionary>
+            <Color x:Key="DiamondGreen">#26A69A</Color>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

@@ -9,13 +9,7 @@
        Shell.TabBarUnselectedColor="Gray"
        Shell.TabBarForegroundColor="{StaticResource DiamondGreen}"
        Shell.TabBarTitleColor="{StaticResource DiamondGreen}"
-       Shell.BackgroundColor="Transparent">
-    
-    <Shell.Resources>
-        <ResourceDictionary>
-            <Color x:Key="DiamondGreen">#26A69A</Color>
-        </ResourceDictionary>
-    </Shell.Resources>
+       Shell.NavBarIsVisible="False">
 
     <TabBar Title="TESTING">
         <Tab Title="Menu" Icon="menu.png">
@@ -27,7 +21,7 @@
         <Tab Title="Products" Icon="products.png">
             <ShellContent ContentTemplate="{DataTemplate views:CategoriesPage}"/>
         </Tab>
-        <Tab Title="User" Icon="user.png">
+        <Tab Title="User" Icon="round_account_circle_24.xml">
             <ShellContent ContentTemplate="{DataTemplate views:UserPage}"/>
         </Tab>
     </TabBar>

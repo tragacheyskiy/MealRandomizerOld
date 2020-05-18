@@ -1,7 +1,7 @@
-﻿using MealRandomizer.Service;
+﻿using MealRandomizer.Models;
 using System;
 
-namespace MealRandomizer.Models
+namespace MealRandomizer.Service
 {
     public sealed class CategoryTranslator
     {

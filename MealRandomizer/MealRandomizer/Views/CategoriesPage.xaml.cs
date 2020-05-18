@@ -1,4 +1,5 @@
 ﻿using MealRandomizer.ViewModels;
+using System;
 using System.Windows.Input;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -8,6 +9,7 @@ namespace MealRandomizer.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CategoriesPage : ContentPage
     {
+
         public CategoriesVM ProductCategoriesViewModel
         {
             get => BindingContext as CategoriesVM;
@@ -16,10 +18,13 @@ namespace MealRandomizer.Views
 
         public ICommand SelectCategory => new Command(async () =>
         {
-            if (categoriesCollectionView.SelectedItem is CategoryVM categoryVM)
+            if (!IsBusy && categoriesCollectionView.SelectedItem is CategoryVM categoryVM)
             {
-                await Navigation.PushAsync(new ProductsPage(categoryVM.GetCategory()));
+                IsBusy = true;
+                var page = new ProductsPage(new ProductsVM(categoryVM));
+                await Navigation.PushAsync(page);
                 categoriesCollectionView.SelectedItem = null;
+                IsBusy = false;
             }
         });
 

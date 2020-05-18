@@ -1,5 +1,6 @@
 ﻿using MealRandomizer.Models;
 using MealRandomizer.ViewModels;
+using System.Windows.Input;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -14,16 +15,39 @@ namespace MealRandomizer.Views
             set => BindingContext = value;
         }
 
+        public ICommand BackButtonCommand => new Command(async () =>
+        {
+            if (Navigation.NavigationStack.Count > 1)
+            {
+                await Navigation.PopAsync();
+            }
+        });
+
+        public ICommand AddButtonCommand => new Command(async () =>
+        {
+            if (!IsBusy)
+            {
+                IsBusy = true;
+                await Navigation.PushModalAsync(new NewProductPage(ProductsVM.CategoryVM.GetCategory()));
+                IsBusy = false;
+            }
+        });
+
         public ProductsPage()
         {
             InitializeComponent();
-            ProductsVM = new ProductsVM(ProductCategory.ALL);
+            ProductsVM = new ProductsVM(new CategoryVM(ProductCategory.ALL,
+                ImageSource.FromResource("MealRandomizer.ProductCategoryPics.chocolate.jpg")));
+            BackButton.Command = BackButtonCommand;
+            AddButton.Command = AddButtonCommand;
         }
 
-        public ProductsPage(ProductCategory category)
+        public ProductsPage(ProductsVM productsVM)
         {
             InitializeComponent();
-            ProductsVM = new ProductsVM(category);
+            ProductsVM = productsVM;
+            BackButton.Command = BackButtonCommand;
+            AddButton.Command = AddButtonCommand;
         }
     }
 }

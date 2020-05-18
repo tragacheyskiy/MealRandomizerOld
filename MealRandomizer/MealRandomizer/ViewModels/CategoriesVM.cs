@@ -1,7 +1,7 @@
 ﻿using MealRandomizer.Models;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.Linq;
 using Xamarin.Forms;
 
@@ -10,7 +10,7 @@ namespace MealRandomizer.ViewModels
     public class CategoriesVM
     {
         private const string IMAGE_PATH = "MealRandomizer.ProductCategoryPics.";
-        private const int TOTAL_CATEGORIES = 16;
+        private readonly int totalCatetories = Enum.GetNames(typeof(ProductCategory)).Length - 1;
         private readonly IList<CategoryVM> sourse;
         public ObservableCollection<CategoryVM> Categories { get; private set; }
 
@@ -22,7 +22,7 @@ namespace MealRandomizer.ViewModels
 
         private void InitializeCategories()
         {
-            int categoryValue = TOTAL_CATEGORIES;
+            int categoryValue = totalCatetories;
             while (categoryValue > 0)
             {
                 ProductCategory category = (ProductCategory)categoryValue--;

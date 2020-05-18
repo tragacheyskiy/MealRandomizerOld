@@ -1,4 +1,5 @@
 ﻿using MealRandomizer.Models;
+using MealRandomizer.Service;
 
 namespace MealRandomizer.ViewModels
 {

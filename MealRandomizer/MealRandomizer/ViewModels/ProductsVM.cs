@@ -1,7 +1,9 @@
 ﻿using MealRandomizer.Models;
+using MealRandomizer.Service;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace MealRandomizer.ViewModels
@@ -13,15 +15,18 @@ namespace MealRandomizer.ViewModels
         private int productsCurrentIndex = 0;
         private int productsMaxCount = COUNT_PER_LOAD;
 
-        public ImageSource Image { get; } = ImageSource.FromResource("MealRandomizer.ProductCategoryPics.nuts.jpg");
+        public CategoryVM CategoryVM { get; }
+        public ImageSource Image { get; }
         public string Category { get; private set; }
         public ObservableCollection<ProductVM> Products { get; private set; }
-        public Command LoadMoreProductsCommand => new Command(async () => await Task.Run(LoadProducts));
+        public ICommand LoadMoreProductsCommand => new Command(async () => await Task.Run(LoadProducts));
 
-        public ProductsVM(ProductCategory category)
+        public ProductsVM(CategoryVM categoryVM)
         {
+            CategoryVM = categoryVM;
+            Image = categoryVM.Image;
             Products = new ObservableCollection<ProductVM>();
-            Initialize(category);
+            Initialize(categoryVM.GetCategory());
         }
 
         private async void Initialize(ProductCategory category)

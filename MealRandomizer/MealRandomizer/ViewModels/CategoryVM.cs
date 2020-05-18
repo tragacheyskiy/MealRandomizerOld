@@ -1,4 +1,5 @@
 ﻿using MealRandomizer.Models;
+using MealRandomizer.Service;
 using Xamarin.Forms;
 
 namespace MealRandomizer.ViewModels
@@ -17,5 +18,7 @@ namespace MealRandomizer.ViewModels
         }
 
         public ProductCategory GetCategory() => _category;
+
+        public override string ToString() => Category;
     }
 }

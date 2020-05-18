@@ -3,73 +3,114 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:local="clr-namespace:MealRandomizer.Service"
              mc:Ignorable="d"
              x:Class="MealRandomizer.Views.ProductsPage"
-             Title="{Binding Category}"
-             Shell.PresentationMode="Modal">
+             Title="{Binding Category}">
     <ContentPage.Content>
-            <StackLayout Spacing="0"
-                         Grid.Column="0"
-                         Grid.Row="0">
-                <Label Text="Продукт    Б г    Ж г    У г    К кКал."
+        <Grid RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Image Source="{Binding Image}"
+                   Aspect="AspectFill"
+                   Grid.Row="0"/>
+            <Label BackgroundColor="#50000000"
+                   VerticalOptions="FillAndExpand"
+                   HorizontalOptions="FillAndExpand"/>
+            <Grid RowSpacing="0"
+                  Grid.Row="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                </Grid.RowDefinitions>
+                <Label Text="{Binding Category}"
+                       HorizontalTextAlignment="Center"
+                       VerticalTextAlignment="Center"
+                   TextColor="White"
+                   FontAttributes="Bold"
+                   FontSize="22"
+                   BackgroundColor="Transparent"
+                   Grid.Row="0"/>
+                <ImageButton x:Name="BackButton" 
+                         Source="round_arrow_back_24.xml"
+                         Aspect="AspectFit"
+                         BackgroundColor="Transparent"
+                         Grid.Row="0"
+                         HorizontalOptions="Start"
+                         VerticalOptions="Center"
+                         Margin="20,0"
+                         Padding="10"/>
+                <ImageButton x:Name="AddButton" 
+                         Source="round_add_24.xml"
+                         Aspect="AspectFit"
+                         BackgroundColor="Transparent"
+                         Grid.Row="0"
+                         HorizontalOptions="End"
+                         VerticalOptions="Center"
+                         Margin="20,0"
+                         Padding="10"/>
+            </Grid>
+            <Label Text="Продукт    Б г    Ж г    У г    К кКал."
                    TextColor="White"
                    FontAttributes="Bold"
                    FontSize="16"
-                   BackgroundColor="#26A69A"
-                   Padding="40,0"/>
-                <CollectionView ItemsSource="{Binding Products}"
+                   BackgroundColor="{StaticResource DiamondGreen}"
+                   Padding="40,0"
+                   Grid.Row="1"/>
+            <CollectionView ItemsSource="{Binding Products}"
                             ItemSizingStrategy="MeasureFirstItem"
                             RemainingItemsThreshold="10"
                             RemainingItemsThresholdReachedCommand="{Binding LoadMoreProductsCommand}"
                             VerticalScrollBarVisibility="Always"
-                            Margin="20,0">
-                    <CollectionView.ItemsLayout>
-                        <LinearItemsLayout Orientation="Vertical"
+                            Margin="20,0"
+                            Grid.Row="2">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical"
                                        SnapPointsType="Mandatory"
                                        SnapPointsAlignment="Start" />
-                    </CollectionView.ItemsLayout>
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate>
-                            <StackLayout Spacing="0">
-                                <Label Text="{Binding Name}"
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Spacing="0">
+                            <Label Text="{Binding Name}"
                                    BackgroundColor="Gray"
                                    TextColor="White"
                                    Padding="20,0"
                                    FontSize="16"
                                    FontAttributes="Italic"/>
-                                <Grid RowSpacing="0"
+                            <Grid RowSpacing="0"
                                   ColumnSpacing="0"
                                   BackgroundColor="DarkGray"
                                   Padding="20, 0"
                                   Margin="0,0,0,10">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="*"/>
-                                    </Grid.RowDefinitions>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="Auto"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Label Text="Calories:"
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Text="Calories:"
                                        TextColor="Black"
                                        FontSize="14"
                                        HorizontalTextAlignment="Center"
                                        Grid.Row="0"
                                        Grid.Column="0"/>
-                                    <Label Text="{Binding Calories}"
+                                <Label Text="{Binding Calories}"
                                        TextColor="Green"
                                        FontSize="14"
                                        HorizontalTextAlignment="Center"
                                        Grid.Row="0"
                                        Grid.Column="1"/>
-                                </Grid>
-                                <Label Text="{Binding Category}"
+                            </Grid>
+                            <Label Text="{Binding Category}"
                                    FontSize="14"
                                    TextColor="Blue"/>
-                            </StackLayout>
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
-            </StackLayout>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

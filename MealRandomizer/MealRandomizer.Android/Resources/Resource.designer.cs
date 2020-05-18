@@ -8365,13 +8365,31 @@ namespace MealRandomizer.Droid
 			public const int recipes = 2131165302;
 			
 			// aapt resource value: 0x7F070077
-			public const int tooltip_frame_dark = 2131165303;
+			public const int round_account_circle_24 = 2131165303;
 			
 			// aapt resource value: 0x7F070078
-			public const int tooltip_frame_light = 2131165304;
+			public const int round_add_24 = 2131165304;
 			
 			// aapt resource value: 0x7F070079
-			public const int user = 2131165305;
+			public const int round_arrow_back_24 = 2131165305;
+			
+			// aapt resource value: 0x7F07007A
+			public const int round_check_24 = 2131165306;
+			
+			// aapt resource value: 0x7F07007B
+			public const int round_close_24 = 2131165307;
+			
+			// aapt resource value: 0x7F07007C
+			public const int round_search_24 = 2131165308;
+			
+			// aapt resource value: 0x7F07007D
+			public const int tooltip_frame_dark = 2131165309;
+			
+			// aapt resource value: 0x7F07007E
+			public const int tooltip_frame_light = 2131165310;
+			
+			// aapt resource value: 0x7F07007F
+			public const int user = 2131165311;
 			
 			static Drawable()
 			{

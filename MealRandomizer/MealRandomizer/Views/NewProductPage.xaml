@@ -1,0 +1,181 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="MealRandomizer.Views.NewProductPage">
+    <ContentPage.Content>
+        <Grid RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            
+            <Label Text="НОВЫЙ ПРОДУКТ"
+                   FontAttributes="Bold"
+                   TextColor="White"
+                   FontSize="22"
+                   VerticalTextAlignment="Center"
+                   HorizontalTextAlignment="Center"
+                   BackgroundColor="{StaticResource DiamondGreen}"
+                   Grid.Row="0"/>
+            <ImageButton x:Name="CloseButton"
+                         Source="round_close_24.xml"
+                         Aspect="AspectFit"
+                         BackgroundColor="Transparent"
+                         Grid.Row="0"
+                         HorizontalOptions="Start"
+                         VerticalOptions="Center"
+                         Margin="20,0"
+                         Padding="10"/>
+            <ImageButton x:Name="AddButton"
+                         Source="round_check_24.xml"
+                         Aspect="AspectFit"
+                         BackgroundColor="Transparent"
+                         Grid.Row="0"
+                         HorizontalOptions="End"
+                         VerticalOptions="Center"
+                         Margin="20,0"
+                         Padding="10"/>
+            
+            <StackLayout Spacing="10"
+                         Grid.Row="1"
+                         Margin="20,0">
+                
+                <Entry x:Name="NameEntry"
+                       Placeholder="Название"
+                       FontSize="18"
+                       ClearButtonVisibility="WhileEditing"
+                       MaxLength="30"
+                       Keyboard="Text"
+                       Focused="Entry_Focused"/>
+                <Picker x:Name="CategoryPicker"
+                        Title="Категория"
+                        FontSize="18"
+                        FontAttributes="Italic"
+                        Focused="CategoryPicker_Focused"/>
+                <Label Text="Нутриенты на 100 гр."
+                       FontSize="18"
+                       TextColor="White"
+                       HorizontalTextAlignment="Center"
+                       VerticalTextAlignment="Center"
+                       HorizontalOptions="Center"
+                       BackgroundColor="{StaticResource DiamondGreen}"
+                       Padding="5,0"/>
+                
+                <Grid RowSpacing="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <Label Text="Белки"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"
+                           TextColor="Black"
+                           FontSize="18"
+                           Grid.Row="0"
+                           Grid.Column="0"
+                           HorizontalOptions="End"/>
+                    <Entry x:Name="ProteinsEntry"
+                           Placeholder="Белки"
+                           ClearButtonVisibility="WhileEditing"
+                           Keyboard="Numeric"
+                           MaxLength="10"
+                           Grid.Row="0"
+                           Grid.Column="1"
+                           WidthRequest="150"
+                           Focused="Entry_Focused"/>
+                    <Label Text="грамм"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"
+                           TextColor="Black"
+                           FontSize="18"
+                           Grid.Row="0"
+                           Grid.Column="2"
+                           HorizontalOptions="Start"/>
+                    
+                    <Label Text="Жиры"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"
+                           TextColor="Black"
+                           FontSize="18"
+                           Grid.Row="1"
+                           Grid.Column="0"
+                           HorizontalOptions="End"/>
+                    <Entry x:Name="FatsEntry"
+                           Placeholder="Жиры"
+                           ClearButtonVisibility="WhileEditing"
+                           Keyboard="Numeric"
+                           MaxLength="10"
+                           Grid.Row="1"
+                           Grid.Column="1"
+                           WidthRequest="150"
+                           Focused="Entry_Focused"/>
+                    <Label Text="грамм"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"
+                           TextColor="Black"
+                           FontSize="18"
+                           Grid.Row="1"
+                           Grid.Column="2"
+                           HorizontalOptions="Start"/>
+
+                    <Label Text="Углеводы"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"
+                           TextColor="Black"
+                           FontSize="18"
+                           Grid.Row="2"
+                           Grid.Column="0"
+                           HorizontalOptions="End"/>
+                    <Entry x:Name="CarbohydratesEntry"
+                           Placeholder="Углеводы"
+                           ClearButtonVisibility="WhileEditing"
+                           Keyboard="Numeric"
+                           MaxLength="10"
+                           Grid.Row="2"
+                           Grid.Column="1"
+                           WidthRequest="150"
+                           Focused="Entry_Focused"/>
+                    <Label Text="грамм"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"
+                           TextColor="Black"
+                           FontSize="18"
+                           Grid.Row="2"
+                           Grid.Column="2"
+                           HorizontalOptions="Start"/>
+                    
+                    <Label Text="Калории"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"
+                           TextColor="Black"
+                           FontSize="18"
+                           Grid.Row="3"
+                           Grid.Column="0"
+                           HorizontalOptions="End"/>
+                    <Entry x:Name="CaloriesEntry"
+                           Placeholder="Калории"
+                           ClearButtonVisibility="WhileEditing"
+                           Keyboard="Numeric"
+                           MaxLength="10"
+                           Grid.Row="3"
+                           Grid.Column="1"
+                           WidthRequest="150"
+                           Focused="Entry_Focused"/>
+                    <Label Text="кКал"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"
+                           TextColor="Black"
+                           FontSize="18"
+                           Grid.Row="3"
+                           Grid.Column="2"
+                           HorizontalOptions="Start"/>
+                </Grid>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

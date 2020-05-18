@@ -57,6 +57,9 @@
     <Compile Update="Views\CategoriesPage.xaml.cs">
       <DependentUpon>CategoriesPage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\NewProductPage.xaml.cs">
+      <DependentUpon>NewProductPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\ProductsPage.xaml.cs">
       <DependentUpon>ProductsPage.xaml</DependentUpon>
     </Compile>
@@ -67,6 +70,9 @@
 
   <ItemGroup>
     <EmbeddedResource Update="Views\CategoriesPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\NewProductPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\ProductsPage.xaml">

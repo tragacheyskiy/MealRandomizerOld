@@ -23,11 +23,33 @@
         </Style>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout Margin="5">
+        <Grid RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Label Text="ПРОДУКТЫ"
+                   FontAttributes="Bold"
+                   TextColor="White"
+                   FontSize="22"
+                   VerticalTextAlignment="Center"
+                   HorizontalTextAlignment="Center"
+                   BackgroundColor="{StaticResource DiamondGreen}"
+                   Grid.Row="0"/>
+            <ImageButton Source="round_search_24.xml"
+                         Aspect="AspectFit"
+                         BackgroundColor="Transparent"
+                         Grid.Row="0"
+                         HorizontalOptions="End"
+                         VerticalOptions="Center"
+                         Margin="20,0"
+                         Padding="10"/>
             <CollectionView x:Name="categoriesCollectionView"
                             ItemsSource="{Binding Categories}"
                             SelectionMode="Single"
-                            ItemSizingStrategy="MeasureFirstItem">
+                            ItemSizingStrategy="MeasureFirstItem"
+                            Margin="5,0"
+                            Grid.Row="1">
                 <CollectionView.ItemsLayout>
                     <GridItemsLayout Orientation="Vertical"
                                      Span="2"/>
@@ -38,13 +60,17 @@
                             <Frame CornerRadius="10"
                                    Padding="0"
                                    HasShadow="False">
-                                <Grid>
+                                <Grid RowSpacing="0"
+                                      ColumnSpacing="0">
+                                    
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="95"/>
                                     </Grid.RowDefinitions>
+                                    
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
+                                    
                                     <Image Source="{Binding Image}"
                                            Aspect="AspectFill"
                                            Grid.Row="0"
@@ -55,6 +81,9 @@
                                            FontAttributes="Bold,Italic"
                                            HorizontalTextAlignment="Center"
                                            VerticalTextAlignment="End"
+                                           BackgroundColor="#50000000"
+                                           VerticalOptions="End"
+                                           HorizontalOptions="FillAndExpand"
                                            Grid.Row="0"
                                            Grid.Column="0"/>
                                 </Grid>
@@ -63,6 +92,6 @@
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
-        </StackLayout>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
