@@ -11,14 +11,16 @@ namespace MealRandomizer.Models
 
         public Product(string name, ProductCategory category, Nutrients nutrientsPerHundredGrams)
         {
-            Name = name.ToUpperInvariant();
+            Name = name.ToLowerInvariant();
             Category = category;
             NutrientsPerHundredGrams = nutrientsPerHundredGrams;
         }
 
         public bool Equals(Product other)
         {
-            return string.Equals(Name, other.Name, StringComparison.OrdinalIgnoreCase);
+            return string.Equals(Name, other.Name, StringComparison.OrdinalIgnoreCase)
+                && Category.Equals(other.Category)
+                && NutrientsPerHundredGrams.Equals(other.NutrientsPerHundredGrams);
         }
 
         public int CompareTo(Product other)

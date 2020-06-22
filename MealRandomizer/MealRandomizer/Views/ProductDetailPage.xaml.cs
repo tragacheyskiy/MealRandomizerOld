@@ -1,12 +1,13 @@
-﻿using Xamarin.Forms;
+﻿using MealRandomizer.ViewModels;
+using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace MealRandomizer.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class NewProductPage : ContentPage
+    public partial class ProductDetailPage : ContentPage
     {
-        public NewProductPage()
+        public ProductDetailPage()
         {
             InitializeComponent();
         }

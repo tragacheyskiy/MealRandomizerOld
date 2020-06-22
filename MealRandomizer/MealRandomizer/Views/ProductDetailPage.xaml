@@ -5,7 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:MealRandomizer.ViewModels"
              mc:Ignorable="d"
-             x:Class="MealRandomizer.Views.NewProductPage">
+             x:Class="MealRandomizer.Views.ProductDetailPage">
     <ContentPage.Resources>
         <ResourceDictionary>
             <Style x:Key="LabelNutrientsStyle" TargetType="Label">
@@ -26,26 +26,39 @@
     </ContentPage.Resources>
     <ContentPage.Content>
         <Grid RowSpacing="0"
-              x:DataType="local:NewProductViewModel">
+              x:DataType="local:ProductDetailViewModel">
             <Grid.RowDefinitions>
                 <RowDefinition Height="50"/>
             </Grid.RowDefinitions>
-            <Label Text="НОВЫЙ ПРОДУКТ"
+            <Label BackgroundColor="{StaticResource DiamondGreen}"
+                   Grid.Row="0"/>
+            <Label Text="{Binding CurrentProduct.Name}"
                    FontAttributes="Bold"
                    TextColor="White"
-                   FontSize="22"
+                   FontSize="20"
                    VerticalTextAlignment="Center"
-                   HorizontalTextAlignment="Center"
-                   BackgroundColor="{StaticResource DiamondGreen}"
+                   HorizontalTextAlignment="Start"
+                   Margin="60,0,95,0"
                    Grid.Row="0"/>
-            <ImageButton Command="{Binding CloseButtonCommand}"
-                         Source="round_close_24.xml"
+            <ImageButton Command="{Binding BackButtonCommand}"
+                         Opacity="{Binding Opacity}"
+                         Source="{Binding BackButtonSource}"
                          Style="{StaticResource ImageButtonStyle}"
                          Grid.Row="0"
                          HorizontalOptions="Start"
-                         VerticalOptions="Center"/>
-            <ImageButton Command="{Binding AddButtonCommand}"
-                         Source="round_check_24.xml"
+                         VerticalOptions="Center"
+                         Margin="5,0"
+                         Padding="10"/>
+            <ImageButton Source="round_delete_24.xml"
+                         Command="{Binding DeleteButtonCommand}"
+                         Style="{StaticResource ImageButtonStyle}"
+                         Grid.Row="0"
+                         HorizontalOptions="End"
+                         VerticalOptions="Center"
+                         Margin="50,0"/>
+            <ImageButton Command="{Binding EditButtonCommand}"
+                         Opacity="{Binding Opacity}"
+                         Source="{Binding EditButtonSource}"
                          Style="{StaticResource ImageButtonStyle}"
                          Grid.Row="0"
                          HorizontalOptions="End"
@@ -57,12 +70,16 @@
                        Text="{Binding ProductEditVM.Name}"
                        BackgroundColor="{Binding ProductEditVM.NameBackgroundColor}"
                        IsFocused="{Binding ProductEditVM.IsNameFocused, Mode=OneWayToSource}"
+                       IsReadOnly="{Binding IsEntryReadOnly}"
                        FontSize="15"
                        ClearButtonVisibility="WhileEditing"
                        MaxLength="30"
                        Keyboard="Text"/>
                 <Picker ItemsSource="{Binding ProductEditVM.CategoriesSource}"
                         SelectedItem="{Binding ProductEditVM.SelectedCategory, Mode=TwoWay}"
+                        BackgroundColor="{Binding ProductEditVM.CategoriesBackgroundColor}"
+                        IsFocused="{Binding ProductEditVM.IsCategoriesFocused}"
+                        IsEnabled="{Binding IsEditing}"
                         Title="Категория"
                         FontSize="15"
                         FontAttributes="Italic"/>
@@ -90,6 +107,7 @@
                            IsFocused="{Binding ProductEditVM.IsProteinsFocused, Mode=OneWayToSource}"
                            Text="{Binding ProductEditVM.Proteins}"
                            Style="{StaticResource EntryNutrientsStyle}"
+                           IsReadOnly="{Binding IsEntryReadOnly}"
                            Placeholder="Белки"
                            Grid.Row="0"
                            Grid.Column="1"/>
@@ -106,6 +124,7 @@
                            IsFocused="{Binding ProductEditVM.IsFatsFocused, Mode=OneWayToSource}"
                            Text="{Binding ProductEditVM.Fats}"
                            Style="{StaticResource EntryNutrientsStyle}"
+                           IsReadOnly="{Binding IsEntryReadOnly}"
                            Placeholder="Жиры"
                            Grid.Row="1"
                            Grid.Column="1"/>
@@ -122,6 +141,7 @@
                            IsFocused="{Binding ProductEditVM.IsCarbohydratesFocused, Mode=OneWayToSource}"
                            Text="{Binding ProductEditVM.Carbohydrates}"
                            Style="{StaticResource EntryNutrientsStyle}"
+                           IsReadOnly="{Binding IsEntryReadOnly}"
                            Placeholder="Углеводы"
                            Grid.Row="2"
                            Grid.Column="1"/>
@@ -138,6 +158,7 @@
                            IsFocused="{Binding ProductEditVM.IsCaloriesFocused, Mode=OneWayToSource}"
                            Text="{Binding ProductEditVM.Calories}"
                            Style="{StaticResource EntryNutrientsStyle}"
+                           IsReadOnly="{Binding IsEntryReadOnly}"
                            Placeholder="Калории"
                            Grid.Row="3"
                            Grid.Column="1"/>

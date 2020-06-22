@@ -2,8 +2,9 @@
 using Android.Content.PM;
 using Android.OS;
 using Android.Runtime;
-using Android.Views;
-using Xamarin.Forms;
+using MealRandomizer.ViewModels;
+using MealRandomizer.Views;
+using System.Linq;
 
 namespace MealRandomizer.Droid
 {
@@ -20,6 +21,19 @@ namespace MealRandomizer.Droid
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             LoadApplication(new App());
         }
+
+        public override void OnBackPressed()
+        {
+            var currentPage = Xamarin.Forms.Application.Current.MainPage.Navigation.ModalStack.LastOrDefault() as ProductDetailPage;
+            var productDetailVM = currentPage?.BindingContext as ProductDetailViewModel;
+            if (productDetailVM != null && productDetailVM.IsEditing)
+            {
+                productDetailVM.BackButtonCommand.Execute(null);
+                return;
+            }
+            base.OnBackPressed();
+        }
+
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);

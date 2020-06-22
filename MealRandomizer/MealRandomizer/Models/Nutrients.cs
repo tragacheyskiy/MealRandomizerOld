@@ -3,7 +3,7 @@
 namespace MealRandomizer.Models
 {
     [Serializable]
-    public struct Nutrients
+    public struct Nutrients : IEquatable<Nutrients>
     {
         public float Proteins { get; }
         public float Fats { get; }
@@ -60,6 +60,14 @@ namespace MealRandomizer.Models
                 carbohydrates: left.Carbohydrates / right,
                 calories: left.Calories / right
             );
+        }
+
+        public bool Equals(Nutrients other)
+        {
+            return Proteins.Equals(other.Proteins)
+                && Fats.Equals(other.Fats)
+                && Carbohydrates.Equals(other.Carbohydrates)
+                && Calories.Equals(other.Calories);
         }
     }
 }

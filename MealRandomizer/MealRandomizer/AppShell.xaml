@@ -7,16 +7,16 @@
        mc:Ignorable="d"
        x:Class="MealRandomizer.AppShell"
        Shell.TabBarUnselectedColor="Gray"
-       Shell.TabBarForegroundColor="{StaticResource DiamondGreen}"
+       Shell.TabBarForegroundColor="Transparent"
        Shell.TabBarTitleColor="{StaticResource DiamondGreen}"
        Shell.NavBarIsVisible="False">
 
     <TabBar Title="TESTING">
         <Tab Title="Menu" Icon="menu.png">
-            <ShellContent ContentTemplate="{DataTemplate views:ProductsPage}"/>
+            <ShellContent ContentTemplate="{DataTemplate views:RecipesPage}"/>
         </Tab>
         <Tab Title="Recipes" Icon="recipes.png">
-            <ShellContent ContentTemplate="{DataTemplate views:ProductsPage}"/>
+            <ShellContent ContentTemplate="{DataTemplate views:RecipesPage}"/>
         </Tab>
         <Tab Title="Products" Icon="products.png">
             <ShellContent ContentTemplate="{DataTemplate views:CategoriesPage}"/>
