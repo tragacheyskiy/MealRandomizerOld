@@ -5,7 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:MealRandomizer.ViewModels"
              mc:Ignorable="d"
-             x:Class="MealRandomizer.Views.ProductsPage">
+             x:Class="MealRandomizer.Views.ProductsSearchPage">
     <ContentPage.Resources>
         <ResourceDictionary>
             <Style TargetType="Grid">
@@ -38,58 +38,32 @@
     </ContentPage.Resources>
     <ContentPage.Content>
         <Grid RowSpacing="0"
-              x:DataType="local:ProductsViewModel">
+              x:DataType="local:ProductsSearchViewModel">
             <Grid.RowDefinitions>
-                <RowDefinition Height="100"/>
+                <RowDefinition Height="50"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <Image Source="{Binding Image}"
-                   Aspect="AspectFill"
+            <ImageButton Command="{Binding BackButtonCommand}"
+                         Source="round_arrow_back_24_diamond_green.xml"
+                         Style="{StaticResource ImageButtonStyle}"
+                         Grid.Row="0"
+                         HorizontalOptions="Start"
+                         VerticalOptions="Center"/>
+            <Entry x:Name="searchEntry"
+                   Text="{Binding SearchText}"
+                   ReturnType="Search"
+                   TextColor="Black"
+                   Margin="60,0"
+                   Placeholder="Поиск"
                    Grid.Row="0"/>
-            <Label BackgroundColor="#50000000"
-                   Grid.Row="0"/>
-            <Grid RowSpacing="0"
-                  Grid.Row="0">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="50"/>
-                    <RowDefinition Height="50"/>
-                </Grid.RowDefinitions>
-                <Label Text="{Binding CurrentCategory.Category}"
-                       HorizontalTextAlignment="Center"
-                       VerticalTextAlignment="Center"
-                       TextColor="White"
-                       FontAttributes="Bold"
-                       FontSize="22"
-                       BackgroundColor="Transparent"
-                       Grid.Row="0"/>
-                <ImageButton Command="{Binding BackButtonCommand}"
-                             Source="round_arrow_back_24.xml"
-                             Style="{StaticResource ImageButtonStyle}"
-                             Grid.Row="0"
-                             HorizontalOptions="Start"
-                             VerticalOptions="Center"/>
-                <ImageButton Command="{Binding AddButtonCommand}" 
-                             Source="round_add_24.xml"
-                             Style="{StaticResource ImageButtonStyle}"
-                             Grid.Row="0"
-                             HorizontalOptions="End"
-                             VerticalOptions="Center"/>
-                <Entry Text="{Binding SearchText}"
-                       Placeholder="Поиск"
-                       PlaceholderColor="White"
-                       TextColor="White"
-                       Grid.Row="1"
-                       VerticalOptions="Center"
-                       Margin="60,0"/>
-                <ImageButton Command="{Binding ClearButtonCommand}" 
-                             Source="round_close_24.xml"
-                             Style="{StaticResource ImageButtonStyle}"
-                             IsVisible="{Binding IsClearButtonVisible}"
-                             Grid.Row="1"
-                             HorizontalOptions="End"
-                             VerticalOptions="Center"/>
-            </Grid>
+            <ImageButton Command="{Binding ClearButtonCommand}"
+                         Source="round_close_24_diamond_green.xml"
+                         Style="{StaticResource ImageButtonStyle}"
+                         IsVisible="{Binding IsClearButtonVisible}"
+                         Grid.Row="0"
+                         HorizontalOptions="End"
+                         VerticalOptions="Center"/>
             <Grid BackgroundColor="{StaticResource DiamondGreen}"
                   Padding="20,0"
                   ColumnSpacing="0"
@@ -161,6 +135,10 @@
                                      Grid.Row="1"
                                      Grid.ColumnSpan="5"
                                      VerticalOptions="Start"/>
+                            <Label Text="{Binding Category}"
+                                   TextColor="Blue"
+                                   Grid.Row="2"
+                                   Grid.ColumnSpan="5"/>
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>

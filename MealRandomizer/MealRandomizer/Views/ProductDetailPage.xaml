@@ -1,0 +1,174 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:MealRandomizer.ViewModels"
+             mc:Ignorable="d"
+             x:Class="MealRandomizer.Views.ProductDetailPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="LabelNutrientsStyle" TargetType="Label">
+                <Setter Property="Text" Value="грамм"/>
+                <Setter Property="HorizontalTextAlignment" Value="Center"/>
+                <Setter Property="VerticalTextAlignment" Value="Center"/>
+                <Setter Property="TextColor" Value="Black"/>
+                <Setter Property="FontSize" Value="15"/>
+            </Style>
+            <Style x:Key="EntryNutrientsStyle" TargetType="Entry">
+                <Setter Property="FontSize" Value="15"/>
+                <Setter Property="ClearButtonVisibility" Value="WhileEditing"/>
+                <Setter Property="Keyboard" Value="Numeric"/>
+                <Setter Property="MaxLength" Value="10"/>
+                <Setter Property="WidthRequest" Value="150"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid RowSpacing="0"
+              x:DataType="local:ProductDetailViewModel">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+            </Grid.RowDefinitions>
+            <Label BackgroundColor="{StaticResource DiamondGreen}"
+                   Grid.Row="0"/>
+            <Label Text="{Binding CurrentProduct.Name}"
+                   FontAttributes="Bold"
+                   TextColor="White"
+                   FontSize="20"
+                   VerticalTextAlignment="Center"
+                   HorizontalTextAlignment="Start"
+                   Margin="60,0,95,0"
+                   Grid.Row="0"/>
+            <ImageButton Command="{Binding BackButtonCommand}"
+                         Opacity="{Binding Opacity}"
+                         Source="{Binding BackButtonSource}"
+                         Style="{StaticResource ImageButtonStyle}"
+                         Grid.Row="0"
+                         HorizontalOptions="Start"
+                         VerticalOptions="Center"
+                         Margin="5,0"
+                         Padding="10"/>
+            <ImageButton Source="round_delete_24.xml"
+                         Command="{Binding DeleteButtonCommand}"
+                         Style="{StaticResource ImageButtonStyle}"
+                         Grid.Row="0"
+                         HorizontalOptions="End"
+                         VerticalOptions="Center"
+                         Margin="50,0"/>
+            <ImageButton Command="{Binding EditButtonCommand}"
+                         Opacity="{Binding Opacity}"
+                         Source="{Binding EditButtonSource}"
+                         Style="{StaticResource ImageButtonStyle}"
+                         Grid.Row="0"
+                         HorizontalOptions="End"
+                         VerticalOptions="Center"/>
+            <StackLayout Spacing="10"
+                         Grid.Row="1"
+                         Margin="20,0">
+                <Entry Placeholder="Название"
+                       Text="{Binding ProductEditVM.Name}"
+                       BackgroundColor="{Binding ProductEditVM.NameBackgroundColor}"
+                       IsFocused="{Binding ProductEditVM.IsNameFocused, Mode=OneWayToSource}"
+                       IsReadOnly="{Binding IsEntryReadOnly}"
+                       FontSize="15"
+                       ClearButtonVisibility="WhileEditing"
+                       MaxLength="30"
+                       Keyboard="Text"/>
+                <Picker ItemsSource="{Binding ProductEditVM.CategoriesSource}"
+                        SelectedItem="{Binding ProductEditVM.SelectedCategory, Mode=TwoWay}"
+                        BackgroundColor="{Binding ProductEditVM.CategoriesBackgroundColor}"
+                        IsFocused="{Binding ProductEditVM.IsCategoriesFocused}"
+                        IsEnabled="{Binding IsEditing}"
+                        Title="Категория"
+                        FontSize="15"
+                        FontAttributes="Italic"/>
+                <Label Text="Нутриенты на 100 гр."
+                       FontSize="15"
+                       FontAttributes="Bold"
+                       TextColor="White"
+                       HorizontalTextAlignment="Center"
+                       VerticalTextAlignment="Center"
+                       HorizontalOptions="Center"
+                       BackgroundColor="{StaticResource DiamondGreen}"
+                       Padding="5,0"/>
+                <Grid RowSpacing="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Label Style="{StaticResource LabelNutrientsStyle}"
+                           Text="Белки"
+                           Grid.Row="0"
+                           Grid.Column="0"
+                           HorizontalOptions="End"/>
+                    <Entry BackgroundColor="{Binding ProductEditVM.ProteinsBackgroundColor}"
+                           IsFocused="{Binding ProductEditVM.IsProteinsFocused, Mode=OneWayToSource}"
+                           Text="{Binding ProductEditVM.Proteins}"
+                           Style="{StaticResource EntryNutrientsStyle}"
+                           IsReadOnly="{Binding IsEntryReadOnly}"
+                           Placeholder="Белки"
+                           Grid.Row="0"
+                           Grid.Column="1"/>
+                    <Label Style="{StaticResource LabelNutrientsStyle}"
+                           Grid.Row="0"
+                           Grid.Column="2"
+                           HorizontalOptions="Start"/>
+                    <Label Style="{StaticResource LabelNutrientsStyle}"
+                           Text="Жиры"
+                           Grid.Row="1"
+                           Grid.Column="0"
+                           HorizontalOptions="End"/>
+                    <Entry BackgroundColor="{Binding ProductEditVM.FatsBackgroundColor}"
+                           IsFocused="{Binding ProductEditVM.IsFatsFocused, Mode=OneWayToSource}"
+                           Text="{Binding ProductEditVM.Fats}"
+                           Style="{StaticResource EntryNutrientsStyle}"
+                           IsReadOnly="{Binding IsEntryReadOnly}"
+                           Placeholder="Жиры"
+                           Grid.Row="1"
+                           Grid.Column="1"/>
+                    <Label Style="{StaticResource LabelNutrientsStyle}"
+                           Grid.Row="1"
+                           Grid.Column="2"
+                           HorizontalOptions="Start"/>
+                    <Label Style="{StaticResource LabelNutrientsStyle}"
+                           Text="Углеводы"
+                           Grid.Row="2"
+                           Grid.Column="0"
+                           HorizontalOptions="End"/>
+                    <Entry BackgroundColor="{Binding ProductEditVM.CarbohydratesBackgroundColor}"
+                           IsFocused="{Binding ProductEditVM.IsCarbohydratesFocused, Mode=OneWayToSource}"
+                           Text="{Binding ProductEditVM.Carbohydrates}"
+                           Style="{StaticResource EntryNutrientsStyle}"
+                           IsReadOnly="{Binding IsEntryReadOnly}"
+                           Placeholder="Углеводы"
+                           Grid.Row="2"
+                           Grid.Column="1"/>
+                    <Label Style="{StaticResource LabelNutrientsStyle}"
+                           Grid.Row="2"
+                           Grid.Column="2"
+                           HorizontalOptions="Start"/>
+                    <Label Style="{StaticResource LabelNutrientsStyle}"
+                           Text="Калории"
+                           Grid.Row="3"
+                           Grid.Column="0"
+                           HorizontalOptions="End"/>
+                    <Entry BackgroundColor="{Binding ProductEditVM.CaloriesBackgroundColor}"
+                           IsFocused="{Binding ProductEditVM.IsCaloriesFocused, Mode=OneWayToSource}"
+                           Text="{Binding ProductEditVM.Calories}"
+                           Style="{StaticResource EntryNutrientsStyle}"
+                           IsReadOnly="{Binding IsEntryReadOnly}"
+                           Placeholder="Калории"
+                           Grid.Row="3"
+                           Grid.Column="1"/>
+                    <Label Style="{StaticResource LabelNutrientsStyle}"
+                           Text="кКал"
+                           Grid.Row="3"
+                           Grid.Column="2"
+                           HorizontalOptions="Start"/>
+                </Grid>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

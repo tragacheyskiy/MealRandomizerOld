@@ -4,15 +4,15 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="MealRandomizer.Views.UserPage">
+             x:Class="MealRandomizer.Views.RecipesPage">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="USER_PROFILE"
-                   TextColor="Blue"
+            <Label Text="RECIPES_PAGE"
+                   TextColor="LimeGreen"
                    FontSize="42"
                    FontAttributes="Italic"
-                   VerticalOptions="CenterAndExpand" 
-                   HorizontalOptions="CenterAndExpand" />
+                   VerticalOptions="CenterAndExpand"
+                   HorizontalOptions="CenterAndExpand"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

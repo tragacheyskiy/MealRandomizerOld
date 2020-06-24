@@ -6,6 +6,15 @@
              mc:Ignorable="d"
              x:Class="MealRandomizer.App">
     <Application.Resources>
-
+        <ResourceDictionary>
+            <Color x:Key="DiamondGreen">#26A69A</Color>
+            <Color x:Key="DiamondGreenHalfOpacity">#5026A69A</Color>
+            <Style x:Key="ImageButtonStyle" TargetType="ImageButton">
+                <Setter Property="Aspect" Value="AspectFit"/>
+                <Setter Property="BackgroundColor" Value="Transparent"/>
+                <Setter Property="Margin" Value="5,0"/>
+                <Setter Property="Padding" Value="10,0"/>
+            </Style>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

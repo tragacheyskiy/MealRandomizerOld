@@ -4,9 +4,9 @@ using Xamarin.Forms.Xaml;
 namespace MealRandomizer.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ProductsPage : ContentPage
+    public partial class RecipesPage : ContentPage
     {
-        public ProductsPage()
+        public RecipesPage()
         {
             InitializeComponent();
         }

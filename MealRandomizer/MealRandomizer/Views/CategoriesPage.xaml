@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:MealRandomizer.ViewModels"
              mc:Ignorable="d"
              x:Class="MealRandomizer.Views.CategoriesPage">
     <ContentPage.Resources>
@@ -10,11 +11,9 @@
             <Setter Property="VisualStateManager.VisualStateGroups">
                 <VisualStateGroupList>
                     <VisualStateGroup x:Name="CommonStates">
-                        <VisualState x:Name="Normal"/>
                         <VisualState x:Name="Selected">
                             <VisualState.Setters>
-                                <Setter Property="BackgroundColor"
-                                        Value="White" />
+                                <Setter Property="BackgroundColor" Value="White"/>
                             </VisualState.Setters>
                         </VisualState>
                     </VisualStateGroup>
@@ -23,18 +22,46 @@
         </Style>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout Margin="5">
-            <CollectionView x:Name="categoriesCollectionView"
-                            ItemsSource="{Binding Categories}"
+        <Grid RowSpacing="0"
+              x:DataType="local:CategoriesViewModel">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+            </Grid.RowDefinitions>
+            <Label Text="ПРОДУКТЫ"
+                   FontAttributes="Bold"
+                   TextColor="White"
+                   FontSize="22"
+                   VerticalTextAlignment="Center"
+                   HorizontalTextAlignment="Center"
+                   BackgroundColor="{StaticResource DiamondGreen}"
+                   Grid.Row="0"/>
+            <ImageButton Source="round_search_24.xml"
+                         Command="{Binding SearchButtonCommand}"
+                         Style="{StaticResource ImageButtonStyle}"
+                         Grid.Row="0"
+                         HorizontalOptions="Start"
+                         VerticalOptions="Center"/>
+            <ImageButton Source="round_add_24.xml"
+                         Command="{Binding AddButtonCommand}"
+                         Style="{StaticResource ImageButtonStyle}"
+                         Grid.Row="0"
+                         HorizontalOptions="End"
+                         VerticalOptions="Center"/>
+            <CollectionView ItemsSource="{Binding CategoriesWithImages}"
+                            SelectionChangedCommand="{Binding SelectCategoryCommand}"
+                            SelectedItem="{Binding SelectedCategory, Mode=TwoWay}"
                             SelectionMode="Single"
-                            ItemSizingStrategy="MeasureFirstItem">
+                            ItemSizingStrategy="MeasureFirstItem"
+                            Margin="5,0"
+                            Grid.Row="1">
                 <CollectionView.ItemsLayout>
                     <GridItemsLayout Orientation="Vertical"
                                      Span="2"/>
                 </CollectionView.ItemsLayout>
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <StackLayout Padding="5">
+                        <StackLayout Padding="5"
+                                     x:DataType="local:CategoryWithImageViewModel">
                             <Frame CornerRadius="10"
                                    Padding="0"
                                    HasShadow="False">
@@ -42,27 +69,24 @@
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="95"/>
                                     </Grid.RowDefinitions>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"/>
-                                    </Grid.ColumnDefinitions>
                                     <Image Source="{Binding Image}"
                                            Aspect="AspectFill"
-                                           Grid.Row="0"
-                                           Grid.Column="0"/>
-                                    <Label Text="{Binding Category}"
+                                           Grid.Row="0"/>
+                                    <Label Text="{Binding CategoryVM.Category}"
                                            TextColor="White"
                                            FontSize="15"
                                            FontAttributes="Bold,Italic"
                                            HorizontalTextAlignment="Center"
                                            VerticalTextAlignment="End"
-                                           Grid.Row="0"
-                                           Grid.Column="0"/>
+                                           BackgroundColor="#50000000"
+                                           VerticalOptions="End"
+                                           Grid.Row="0"/>
                                 </Grid>
                             </Frame>
                         </StackLayout>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
-        </StackLayout>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

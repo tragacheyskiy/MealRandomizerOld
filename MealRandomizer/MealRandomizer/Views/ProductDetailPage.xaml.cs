@@ -5,12 +5,11 @@ using Xamarin.Forms.Xaml;
 namespace MealRandomizer.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class CategoriesPage : ContentPage
+    public partial class ProductDetailPage : ContentPage
     {
-        public CategoriesPage()
+        public ProductDetailPage()
         {
             InitializeComponent();
-            BindingContext = CategoriesViewModel.Instance;
         }
     }
 }

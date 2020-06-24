@@ -1,15 +1,15 @@
-﻿using MealRandomizer.Service;
+﻿using MealRandomizer.Models;
 using System;
 
-namespace MealRandomizer.Models
+namespace MealRandomizer.Service
 {
     public sealed class CategoryTranslator
     {
-        private static readonly Lazy<CategoryTranslator> lazy = new Lazy<CategoryTranslator>(() => new CategoryTranslator());
+        private static readonly Lazy<CategoryTranslator> instance = new Lazy<CategoryTranslator>(() => new CategoryTranslator());
 
         private CategoryTranslator() { }
 
-        public static CategoryTranslator Instance => lazy.Value;
+        public static CategoryTranslator Instance => instance.Value;
 
         public string GetTranslatedName(ProductCategory category)
         {

@@ -11,14 +11,16 @@ namespace MealRandomizer.Models
 
         public Product(string name, ProductCategory category, Nutrients nutrientsPerHundredGrams)
         {
-            Name = name.ToUpperInvariant();
+            Name = name.ToLowerInvariant();
             Category = category;
             NutrientsPerHundredGrams = nutrientsPerHundredGrams;
         }
 
         public bool Equals(Product other)
         {
-            return string.Equals(Name, other.Name, StringComparison.OrdinalIgnoreCase);
+            return string.Equals(Name, other.Name, StringComparison.OrdinalIgnoreCase)
+                && Category.Equals(other.Category)
+                && NutrientsPerHundredGrams.Equals(other.NutrientsPerHundredGrams);
         }
 
         public int CompareTo(Product other)
@@ -26,13 +28,6 @@ namespace MealRandomizer.Models
             return Name.CompareTo(other.Name);
         }
 
-        public override string ToString()
-        {
-            return $"{Name} ({Category})\n    " +
-                   $"Proteins per 100g: {NutrientsPerHundredGrams.Proteins} g.\n    " +
-                   $"Fats per 100g: {NutrientsPerHundredGrams.Fats} g.\n    " +
-                   $"Carbohydrates per 100g: {NutrientsPerHundredGrams.Fats} g.\n    " +
-                   $"Calories per 100g: {NutrientsPerHundredGrams.Calories} kcal";
-        }
+        public override string ToString() => Name;
     }
 }
