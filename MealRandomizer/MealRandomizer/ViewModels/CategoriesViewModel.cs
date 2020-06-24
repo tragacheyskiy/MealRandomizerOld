@@ -1,5 +1,4 @@
 ﻿using MealRandomizer.Models;
-using MealRandomizer.Service;
 using MealRandomizer.Views;
 using System;
 using System.Collections.Generic;
@@ -40,7 +39,7 @@ namespace MealRandomizer.ViewModels
                 if (!Page.IsBusy)
                 {
                     Page.IsBusy = true;
-                    NewProductPage page = new NewProductPage() { BindingContext = new NewProductViewModel(ProductsCollection.Instance.SetCurrentCategory(categoryDefault)) };
+                    NewProductPage page = new NewProductPage() { BindingContext = new NewProductViewModel(categoryDefault) };
                     await Page.Navigation.PushModalAsync(page);
                     Page.IsBusy = false;
                 }
@@ -50,7 +49,7 @@ namespace MealRandomizer.ViewModels
                 if (!Page.IsBusy)
                 {
                     Page.IsBusy = true;
-                    ProductsSearchPage page = new ProductsSearchPage() { BindingContext = new ProductsSearchViewModel(ProductsCollection.Instance.SetCurrentCategory(categoryDefault)) };
+                    ProductsSearchPage page = new ProductsSearchPage() { BindingContext = new ProductsSearchViewModel(categoryDefault) };
                     await Page.Navigation.PushModalAsync(page);
                     Page.IsBusy = false;
                 }

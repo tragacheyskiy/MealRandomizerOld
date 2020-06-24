@@ -85,6 +85,7 @@
                 <ImageButton Command="{Binding ClearButtonCommand}" 
                              Source="round_close_24.xml"
                              Style="{StaticResource ImageButtonStyle}"
+                             IsVisible="{Binding IsClearButtonVisible}"
                              Grid.Row="1"
                              HorizontalOptions="End"
                              VerticalOptions="Center"/>
@@ -160,10 +161,6 @@
                                      Grid.Row="1"
                                      Grid.ColumnSpan="5"
                                      VerticalOptions="Start"/>
-                            <Label Text="{Binding Category}"
-                                   TextColor="Blue"
-                                   Grid.Row="2"
-                                   Grid.ColumnSpan="5"/>
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>

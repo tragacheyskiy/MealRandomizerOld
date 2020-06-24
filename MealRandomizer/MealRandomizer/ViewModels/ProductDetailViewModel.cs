@@ -18,7 +18,6 @@ namespace MealRandomizer.ViewModels
         private ImageSource backButtonSource = BACK_ICON;
         private ImageSource editButtonSource = EDIT_ICON;
         private ProductViewModel currentProduct;
-        private ProductsCollection ProductsSource { get; }
 
         public ProductViewModel CurrentProduct
         {
@@ -55,11 +54,10 @@ namespace MealRandomizer.ViewModels
         public Command DeleteButtonCommand { get; private set; }
         public Command EditButtonCommand { get; private set; }
 
-        public ProductDetailViewModel(ProductsCollection productsSource, ProductViewModel selectedProduct)
+        public ProductDetailViewModel(ProductViewModel selectedProduct)
         {
-            ProductsSource = productsSource;
             CurrentProduct = selectedProduct;
-            ProductEditVM = ProductEditViewModel.GetCategoryWithProductVM(ProductsSource.CurrentCategory, CurrentProduct);
+            ProductEditVM = ProductEditViewModel.GetCategoryWithProductVM(CurrentProduct.Category, CurrentProduct);
             InitializeCommands();
         }
 
@@ -92,7 +90,7 @@ namespace MealRandomizer.ViewModels
             bool isUpdated = false;
             if (isAccepted)
             {
-                isUpdated = await ProductsSource.UpdateProductAsync(CurrentProduct, CurrentProduct = ProductEditVM.NewProductVM);
+                isUpdated = await ProductsData.Instance.UpdateProductAsync(CurrentProduct, CurrentProduct = ProductEditVM.NewProductVM);
             }
             if (isUpdated)
             {
@@ -106,7 +104,7 @@ namespace MealRandomizer.ViewModels
             bool isDeleted = false;
             if (isAccepted)
             {
-                isDeleted = await ProductsSource.DeleteProductAsync(CurrentProduct);
+                isDeleted = await ProductsData.Instance.DeleteProductAsync(CurrentProduct);
             }
             if (isDeleted)
             {

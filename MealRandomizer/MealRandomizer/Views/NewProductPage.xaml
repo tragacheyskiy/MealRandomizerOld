@@ -63,6 +63,8 @@
                        Keyboard="Text"/>
                 <Picker ItemsSource="{Binding ProductEditVM.CategoriesSource}"
                         SelectedItem="{Binding ProductEditVM.SelectedCategory, Mode=TwoWay}"
+                        BackgroundColor="{Binding ProductEditVM.CategoriesBackgroundColor}"
+                        IsFocused="{Binding ProductEditVM.IsCategoriesFocused}"
                         Title="Категория"
                         FontSize="15"
                         FontAttributes="Italic"/>

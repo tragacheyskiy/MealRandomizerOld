@@ -1,21 +1,19 @@
-﻿using MealRandomizer.Models;
-using MealRandomizer.Service;
+﻿using MealRandomizer.Service;
 using MealRandomizer.Views;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace MealRandomizer.ViewModels
 {
     public class ProductsSearchViewModel : BaseViewModel
     {
-        private readonly ProductsCollection productsSource;
         private bool isClearButtonVisible;
         private string searchText = string.Empty;
+        private List<ProductViewModel> ProductsSource { get; }
 
-        public ObservableCollection<ProductViewModel> Products { get; }
+        public ObservableCollection<ProductViewModel> Products { get; } = new ObservableCollection<ProductViewModel>();
         public ProductViewModel SelectedProduct { get; set; }
         public bool IsClearButtonVisible
         {
@@ -27,19 +25,35 @@ namespace MealRandomizer.ViewModels
             get => searchText;
             set
             {
+                IsClearButtonVisible = value != string.Empty;
                 SetProperty(ref searchText, value);
-                productsSource.Search(searchText, Products);
+                Search(searchText);
             }
         }
         public Command BackButtonCommand { get; private set; }
         public Command ClearButtonCommand { get; private set; }
         public Command SelectProductCommand { get; private set; }
 
-        public ProductsSearchViewModel(ProductsCollection productsSource)
+        public ProductsSearchViewModel(CategoryViewModel currentCategory)
         {
-            this.productsSource = productsSource;
-            Products = new ObservableCollection<ProductViewModel>(productsSource.GetProductsByCurrentCategory());
+            ProductsSource = ProductsData.Instance.GetProductsByCategory(currentCategory);
             InitializeCommands();
+        }
+
+        private void Search(string searchText)
+        {
+            Products.Clear();
+            if (string.IsNullOrEmpty(searchText))
+            {
+                return;
+            }
+            var result = from productVM in ProductsSource
+                         where productVM.Product.Name.Contains(searchText.ToLowerInvariant())
+                         select productVM;
+            foreach (ProductViewModel productVM in result)
+            {
+                Products.Add(productVM);
+            }
         }
 
         private void InitializeCommands()
@@ -61,7 +75,7 @@ namespace MealRandomizer.ViewModels
                     Page.IsBusy = true;
                     ProductDetailPage page = new ProductDetailPage()
                     {
-                        BindingContext = new ProductDetailViewModel(productsSource, SelectedProduct)
+                        BindingContext = new ProductDetailViewModel(SelectedProduct)
                     };
                     await Page.Navigation.PushModalAsync(page);
                     SelectedProduct = null;

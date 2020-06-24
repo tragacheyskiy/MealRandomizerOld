@@ -2,6 +2,7 @@
 using MealRandomizer.Service;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using Xamarin.Forms;
 
@@ -96,6 +97,7 @@ namespace MealRandomizer.ViewModels
         private ProductEditViewModel(CategoryViewModel selectedCategory, ProductViewModel productVM)
         {
             this.productVM = productVM;
+            name = proteins = fats = carbohydrates = calories = "";
             InitializeFields(productVM);
             CategoriesSource = CategoriesViewModel.Instance.CategoriesSource;
             SelectedCategory = selectedCategory;
@@ -119,7 +121,7 @@ namespace MealRandomizer.ViewModels
         public void Refresh()
         {
             InitializeFields(NewProductVM);
-            IsNameFocused = IsProteinsFocused = IsFatsFocused = IsCarbohydratesFocused = IsCaloriesFocused = false;
+            IsNameFocused = IsProteinsFocused = IsFatsFocused = IsCarbohydratesFocused = IsCaloriesFocused = IsCategoriesFocused = false;
         }
 
         private Nutrients GetNutrients()
@@ -147,7 +149,7 @@ namespace MealRandomizer.ViewModels
         {
             bool isCorrect = true;
             if (string.IsNullOrWhiteSpace(Name)
-                || productVM == null && ProductsCollection.Instance.ProductsSource.GetItems().Any(product => string.Equals(product.Name, Name.ToLowerInvariant().Trim(), StringComparison.OrdinalIgnoreCase))
+                || productVM == null && ProductsData.Instance.ProductsSource.GetItems().Any(product => string.Equals(product.Name, Name.ToLowerInvariant().Trim(), StringComparison.OrdinalIgnoreCase))
                 || !Name.All(c => char.IsLetter(c) || char.IsWhiteSpace(c) || char.IsPunctuation(c)))
             {
                 NameBackgroundColor = HalfOpacityRed;
@@ -172,6 +174,15 @@ namespace MealRandomizer.ViewModels
             {
                 CaloriesBackgroundColor = HalfOpacityRed;
                 isCorrect = false;
+            }
+            if (SelectedCategory.GetCategory() == ProductCategory.ALL)
+            {
+                CategoriesBackgroundColor = HalfOpacityRed;
+                isCorrect = false;
+            }
+            if (!isCorrect)
+            {
+                return isCorrect;
             }
             NewProductVM = GetProductViewModel();
             if (productVM != null && productVM.Equals(NewProductVM))

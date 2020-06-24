@@ -60,6 +60,7 @@
             <ImageButton Command="{Binding ClearButtonCommand}"
                          Source="round_close_24_diamond_green.xml"
                          Style="{StaticResource ImageButtonStyle}"
+                         IsVisible="{Binding IsClearButtonVisible}"
                          Grid.Row="0"
                          HorizontalOptions="End"
                          VerticalOptions="Center"/>

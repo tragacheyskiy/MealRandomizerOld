@@ -28,13 +28,6 @@ namespace MealRandomizer.Models
             return Name.CompareTo(other.Name);
         }
 
-        public override string ToString()
-        {
-            return $"{Name} ({Category})\n    " +
-                   $"Proteins per 100g: {NutrientsPerHundredGrams.Proteins} g.\n    " +
-                   $"Fats per 100g: {NutrientsPerHundredGrams.Fats} g.\n    " +
-                   $"Carbohydrates per 100g: {NutrientsPerHundredGrams.Fats} g.\n    " +
-                   $"Calories per 100g: {NutrientsPerHundredGrams.Calories} kcal";
-        }
+        public override string ToString() => Name;
     }
 }
