@@ -8,6 +8,5 @@ namespace MealRandomizer.Models
     {
         List<T> Deserialize<T>(string fileName = null);
         void Serialize<T>(T serializableObject, string fileName = null);
-
     }
 }

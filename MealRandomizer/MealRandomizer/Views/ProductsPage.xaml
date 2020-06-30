@@ -34,6 +34,11 @@
                 <Setter Property="HorizontalTextAlignment" Value="Center"/>
                 <Setter Property="VerticalTextAlignment" Value="Center"/>
             </Style>
+            <Style x:Key="ProductUnitStyle" TargetType="StackLayout">
+                <Setter Property="Orientation" Value="Horizontal"/>
+                <Setter Property="Spacing" Value="5"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+            </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
@@ -75,20 +80,13 @@
                              Grid.Row="0"
                              HorizontalOptions="End"
                              VerticalOptions="Center"/>
-                <Entry Text="{Binding SearchText}"
-                       Placeholder="Поиск"
-                       PlaceholderColor="White"
-                       TextColor="White"
-                       Grid.Row="1"
-                       VerticalOptions="Center"
-                       Margin="60,0"/>
-                <ImageButton Command="{Binding ClearButtonCommand}" 
-                             Source="round_close_24.xml"
-                             Style="{StaticResource ImageButtonStyle}"
-                             IsVisible="{Binding IsClearButtonVisible}"
-                             Grid.Row="1"
-                             HorizontalOptions="End"
-                             VerticalOptions="Center"/>
+                <SearchBar Text="{Binding SearchText}"
+                           TextColor="White"
+                           Placeholder="Поиск"
+                           PlaceholderColor="White"
+                           Margin="40,0,0,0"
+                           Grid.Row="1"
+                           CancelButtonColor="White"/>
             </Grid>
             <Grid BackgroundColor="{StaticResource DiamondGreen}"
                   Padding="20,0"
@@ -139,22 +137,38 @@
                                    HorizontalTextAlignment="Start"
                                    Grid.Row="0"
                                    Grid.ColumnSpan="5"/>
-                            <Label Text="{Binding Proteins}"
-                                   Style="{StaticResource ProductStyle}"
-                                   Grid.Row="1"
-                                   Grid.Column="1"/>
-                            <Label Text="{Binding Fats}"
-                                   Style="{StaticResource ProductStyle}"
-                                   Grid.Row="1"
-                                   Grid.Column="2"/>
-                            <Label Text="{Binding Carbohydrates}"
-                                   Style="{StaticResource ProductStyle}"
-                                   Grid.Row="1"
-                                   Grid.Column="3"/>
-                            <Label Text="{Binding Calories}"
-                                   Style="{StaticResource ProductStyle}"
-                                   Grid.Row="1"
-                                   Grid.Column="4"/>
+                            <StackLayout Style="{StaticResource ProductUnitStyle}"
+                                         Grid.Row="1"
+                                         Grid.Column="1">
+                                <Label Text="{Binding Proteins}"
+                                       Style="{StaticResource ProductStyle}"/>
+                                <Label Text="г"
+                                       Style="{StaticResource ProductStyle}"/>
+                            </StackLayout>
+                            <StackLayout Style="{StaticResource ProductUnitStyle}"
+                                         Grid.Row="1"
+                                         Grid.Column="2">
+                                <Label Text="{Binding Fats}"
+                                       Style="{StaticResource ProductStyle}"/>
+                                <Label Text="г"
+                                       Style="{StaticResource ProductStyle}"/>
+                            </StackLayout>
+                            <StackLayout Style="{StaticResource ProductUnitStyle}"
+                                         Grid.Row="1"
+                                         Grid.Column="3">
+                                <Label Text="{Binding Carbohydrates}"
+                                       Style="{StaticResource ProductStyle}"/>
+                                <Label Text="г"
+                                       Style="{StaticResource ProductStyle}"/>
+                            </StackLayout>
+                            <StackLayout Style="{StaticResource ProductUnitStyle}"
+                                         Grid.Row="1"
+                                         Grid.Column="4">
+                                <Label Text="{Binding Calories}"
+                                       Style="{StaticResource ProductStyle}"/>
+                                <Label Text="кКал"
+                                       Style="{StaticResource ProductStyle}"/>
+                            </StackLayout>
                             <BoxView HeightRequest="1"
                                      BackgroundColor="Black"
                                      Margin="-20,0"

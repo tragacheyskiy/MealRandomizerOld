@@ -8,12 +8,15 @@ namespace MealRandomizer.ViewModels
 {
     public class CategoriesViewModel : BaseViewModel
     {
-        private const string IMAGE_PATH = "MealRandomizer.ProductCategoryPics.";
+        private const string ImagePath = "MealRandomizer.ProductCategoryPics.";
+
         private static readonly Lazy<CategoriesViewModel> instance = new Lazy<CategoriesViewModel>(() => new CategoriesViewModel());
+
+        public static CategoriesViewModel Instance => instance.Value;
+
         private readonly CategoryViewModel categoryDefault = new CategoryViewModel(ProductCategory.ALL);
         private CategoryWithImageViewModel selectedCategory;
 
-        public static CategoriesViewModel Instance => instance.Value;
         public List<CategoryViewModel> CategoriesSource { get; }
         public IEnumerable<CategoryWithImageViewModel> CategoriesWithImages { get; }
         public CategoryWithImageViewModel SelectedCategory
@@ -88,7 +91,7 @@ namespace MealRandomizer.ViewModels
             List<CategoryWithImageViewModel> categoriesSource = new List<CategoryWithImageViewModel>();
             foreach (CategoryViewModel categoryVM in CategoriesSource)
             {
-                ImageSource image = ImageSource.FromResource($"{IMAGE_PATH}{categoryVM.GetCategory().ToString().ToLowerInvariant()}.jpg");
+                ImageSource image = ImageSource.FromResource($"{ImagePath}{categoryVM.GetCategory().ToString().ToLowerInvariant()}.jpg");
                 categoriesSource.Add(new CategoryWithImageViewModel(categoryVM, image));
             }
             return categoriesSource;

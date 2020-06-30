@@ -13,6 +13,7 @@ namespace MealRandomizer.ViewModels
         private List<ProductViewModel> productsSource;
         private ProductViewModel selectedProduct;
         private string searchText = string.Empty;
+
         private List<ProductViewModel> ProductsSource
         {
             get => productsSource;

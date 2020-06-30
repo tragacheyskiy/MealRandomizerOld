@@ -22,7 +22,7 @@ namespace MealRandomizer.Views
         {
             base.OnAppearing();
             await Task.Delay(10);
-            searchEntry.Focus();
+            searchBar.Focus();
         }
     }
 }

@@ -11,9 +11,13 @@ namespace MealRandomizer.Service
     public class ProductsData
     {
         private static Lazy<ProductsData> instance = new Lazy<ProductsData>(() => new ProductsData());
+        
+        public static ProductsData Instance => instance.Value;
+        
         private List<ProductViewModel> Products { get; }
 
-        public static ProductsData Instance => instance.Value;
+        public event Action<ProductsData> ProductsSourceChanged;
+
         public DataStore<Product> ProductsSource { get; }
 
         private ProductsData()
@@ -68,8 +72,6 @@ namespace MealRandomizer.Service
             }
             return products;
         }
-
-        public event Action<ProductsData> ProductsSourceChanged;
 
         private void OnProductsSourceChanged()
         {
