@@ -7,16 +7,16 @@ namespace MealRandomizer.ViewModels
 {
     public class ProductDetailViewModel : BaseViewModel
     {
-        private const string BACK_ICON = "round_arrow_back_24.xml";
-        private const string EDIT_ICON = "round_edit_24.xml";
-        private const string CLOSE_ICON = "round_close_24";
-        private const string CHECK_ICON = "round_check_24.xml";
+        private const string BackIcon = "round_arrow_back_24.xml";
+        private const string EditIcon = "round_edit_24.xml";
+        private const string CloseIcon = "round_close_24";
+        private const string CheckIcon = "round_check_24.xml";
 
         private bool isEntryReadOnly = true;
         private bool isEditing = false;
         private double opacity = 1.0;
-        private ImageSource backButtonSource = BACK_ICON;
-        private ImageSource editButtonSource = EDIT_ICON;
+        private ImageSource backButtonSource = BackIcon;
+        private ImageSource editButtonSource = EditIcon;
         private ProductViewModel currentProduct;
 
         public ProductViewModel CurrentProduct
@@ -132,16 +132,16 @@ namespace MealRandomizer.ViewModels
         private void AnimateEditButton()
         {
             ReduceOpacity();
-            BackButtonSource = CLOSE_ICON;
-            EditButtonSource = CHECK_ICON;
+            BackButtonSource = CloseIcon;
+            EditButtonSource = CheckIcon;
             IncreaseOpacity();
         }
 
         private void AnimateBackButton()
         {
             ReduceOpacity();
-            BackButtonSource = BACK_ICON;
-            EditButtonSource = EDIT_ICON;
+            BackButtonSource = BackIcon;
+            EditButtonSource = EditIcon;
             IncreaseOpacity();
         }
 

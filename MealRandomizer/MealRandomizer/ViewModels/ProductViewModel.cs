@@ -18,10 +18,10 @@ namespace MealRandomizer.ViewModels
             Product = product;
             Category = new CategoryViewModel(product.Category);
             Name = char.ToUpperInvariant(product.Name[0]) + product.Name.Substring(1);
-            Proteins = product.NutrientsPerHundredGrams.Proteins.ToString() + " г";
-            Fats = product.NutrientsPerHundredGrams.Fats.ToString() + " г";
-            Carbohydrates = product.NutrientsPerHundredGrams.Carbohydrates.ToString() + " г";
-            Calories = product.NutrientsPerHundredGrams.Calories.ToString() + " кКал";
+            Proteins = product.NutrientsPerHundredGrams.Proteins.ToString();
+            Fats = product.NutrientsPerHundredGrams.Fats.ToString();
+            Carbohydrates = product.NutrientsPerHundredGrams.Carbohydrates.ToString();
+            Calories = product.NutrientsPerHundredGrams.Calories.ToString();
         }
 
         public bool Equals(ProductViewModel other)

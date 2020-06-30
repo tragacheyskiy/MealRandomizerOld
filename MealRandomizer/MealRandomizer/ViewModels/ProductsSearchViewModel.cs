@@ -11,6 +11,7 @@ namespace MealRandomizer.ViewModels
     {
         private bool isClearButtonVisible;
         private string searchText = string.Empty;
+
         private List<ProductViewModel> ProductsSource { get; }
 
         public ObservableCollection<ProductViewModel> Products { get; } = new ObservableCollection<ProductViewModel>();
@@ -31,7 +32,6 @@ namespace MealRandomizer.ViewModels
             }
         }
         public Command BackButtonCommand { get; private set; }
-        public Command ClearButtonCommand { get; private set; }
         public Command SelectProductCommand { get; private set; }
 
         public ProductsSearchViewModel(CategoryViewModel currentCategory)
@@ -58,7 +58,6 @@ namespace MealRandomizer.ViewModels
 
         private void InitializeCommands()
         {
-            ClearButtonCommand = new Command(() => SearchText = string.Empty);
             BackButtonCommand = new Command(async () =>
             {
                 if (!Page.IsBusy)

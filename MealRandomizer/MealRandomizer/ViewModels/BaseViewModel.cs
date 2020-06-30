@@ -7,9 +7,9 @@ namespace MealRandomizer.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
-        protected Page Page { get; } = Application.Current.MainPage;
-
         public event PropertyChangedEventHandler PropertyChanged;
+
+        protected Page Page { get; } = Application.Current.MainPage;
 
         protected void SetProperty<T>(ref T source, T value, [CallerMemberName] string propertyName = "")
         {
