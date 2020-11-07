@@ -2,8 +2,8 @@
 using Android.Content.PM;
 using Android.OS;
 using Android.Runtime;
-using MealRandomizer.ViewModels;
-using MealRandomizer.Views;
+using MealRandomizer.ViewModels.ProductsViewModels;
+using MealRandomizer.Views.ProductsViews;
 using System.Linq;
 
 namespace MealRandomizer.Droid

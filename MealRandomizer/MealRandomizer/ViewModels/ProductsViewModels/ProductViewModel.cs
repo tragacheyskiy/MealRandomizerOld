@@ -1,7 +1,7 @@
 ﻿using MealRandomizer.Models;
 using System;
 
-namespace MealRandomizer.ViewModels
+namespace MealRandomizer.ViewModels.ProductsViewModels
 {
     public class ProductViewModel : IComparable<ProductViewModel>, IEquatable<ProductViewModel>
     {

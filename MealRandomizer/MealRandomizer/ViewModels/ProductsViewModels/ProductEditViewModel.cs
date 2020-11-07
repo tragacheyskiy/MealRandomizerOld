@@ -6,7 +6,7 @@ using System.Diagnostics;
 using System.Linq;
 using Xamarin.Forms;
 
-namespace MealRandomizer.ViewModels
+namespace MealRandomizer.ViewModels.ProductsViewModels
 {
     public class ProductEditViewModel : BaseViewModel
     {

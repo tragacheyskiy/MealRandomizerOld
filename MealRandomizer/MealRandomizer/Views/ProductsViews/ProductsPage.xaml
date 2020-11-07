@@ -3,9 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:local="clr-namespace:MealRandomizer.ViewModels"
+             xmlns:local="clr-namespace:MealRandomizer.ViewModels.ProductsViewModels"
              mc:Ignorable="d"
-             x:Class="MealRandomizer.Views.ProductsSearchPage">
+             x:Class="MealRandomizer.Views.ProductsViews.ProductsPage">
     <ContentPage.Resources>
         <ResourceDictionary>
             <Style TargetType="Grid">
@@ -34,29 +34,60 @@
                 <Setter Property="HorizontalTextAlignment" Value="Center"/>
                 <Setter Property="VerticalTextAlignment" Value="Center"/>
             </Style>
+            <Style x:Key="ProductUnitStyle" TargetType="StackLayout">
+                <Setter Property="Orientation" Value="Horizontal"/>
+                <Setter Property="Spacing" Value="5"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
+            </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
         <Grid RowSpacing="0"
-              x:DataType="local:ProductsSearchViewModel">
+              x:DataType="local:ProductsViewModel">
             <Grid.RowDefinitions>
-                <RowDefinition Height="50"/>
+                <RowDefinition Height="100"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <ImageButton Command="{Binding BackButtonCommand}"
-                         Source="round_arrow_back_24_diamond_green.xml"
-                         Style="{StaticResource ImageButtonStyle}"
-                         Grid.Row="0"
-                         HorizontalOptions="Start"
-                         VerticalOptions="Center"/>
-            <SearchBar x:Name="searchBar"
-                       Text="{Binding SearchText}"
-                       TextColor="Black"
-                       Placeholder="Поиск"
-                       Grid.Row="0"
-                       Margin="40,0,0,0"
-                       CancelButtonColor="{StaticResource DiamondGreen}"/>
+            <Image Source="{Binding Image}"
+                   Aspect="AspectFill"
+                   Grid.Row="0"/>
+            <Label BackgroundColor="#50000000"
+                   Grid.Row="0"/>
+            <Grid RowSpacing="0"
+                  Grid.Row="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                </Grid.RowDefinitions>
+                <Label Text="{Binding CurrentCategory.Category}"
+                       HorizontalTextAlignment="Center"
+                       VerticalTextAlignment="Center"
+                       TextColor="White"
+                       FontAttributes="Bold"
+                       FontSize="22"
+                       BackgroundColor="Transparent"
+                       Grid.Row="0"/>
+                <ImageButton Command="{Binding BackButtonCommand}"
+                             Source="round_arrow_back_24.xml"
+                             Style="{StaticResource ImageButtonStyle}"
+                             Grid.Row="0"
+                             HorizontalOptions="Start"
+                             VerticalOptions="Center"/>
+                <ImageButton Command="{Binding AddButtonCommand}" 
+                             Source="round_add_24.xml"
+                             Style="{StaticResource ImageButtonStyle}"
+                             Grid.Row="0"
+                             HorizontalOptions="End"
+                             VerticalOptions="Center"/>
+                <SearchBar Text="{Binding SearchText}"
+                           TextColor="White"
+                           Placeholder="Поиск"
+                           PlaceholderColor="White"
+                           Margin="40,0,0,0"
+                           Grid.Row="1"
+                           CancelButtonColor="White"/>
+            </Grid>
             <Grid BackgroundColor="{StaticResource DiamondGreen}"
                   Padding="20,0"
                   ColumnSpacing="0"
@@ -106,32 +137,44 @@
                                    HorizontalTextAlignment="Start"
                                    Grid.Row="0"
                                    Grid.ColumnSpan="5"/>
-                            <Label Text="{Binding Proteins}"
-                                   Style="{StaticResource ProductStyle}"
-                                   Grid.Row="1"
-                                   Grid.Column="1"/>
-                            <Label Text="{Binding Fats}"
-                                   Style="{StaticResource ProductStyle}"
-                                   Grid.Row="1"
-                                   Grid.Column="2"/>
-                            <Label Text="{Binding Carbohydrates}"
-                                   Style="{StaticResource ProductStyle}"
-                                   Grid.Row="1"
-                                   Grid.Column="3"/>
-                            <Label Text="{Binding Calories}"
-                                   Style="{StaticResource ProductStyle}"
-                                   Grid.Row="1"
-                                   Grid.Column="4"/>
+                            <StackLayout Style="{StaticResource ProductUnitStyle}"
+                                         Grid.Row="1"
+                                         Grid.Column="1">
+                                <Label Text="{Binding Proteins}"
+                                       Style="{StaticResource ProductStyle}"/>
+                                <Label Text="г"
+                                       Style="{StaticResource ProductStyle}"/>
+                            </StackLayout>
+                            <StackLayout Style="{StaticResource ProductUnitStyle}"
+                                         Grid.Row="1"
+                                         Grid.Column="2">
+                                <Label Text="{Binding Fats}"
+                                       Style="{StaticResource ProductStyle}"/>
+                                <Label Text="г"
+                                       Style="{StaticResource ProductStyle}"/>
+                            </StackLayout>
+                            <StackLayout Style="{StaticResource ProductUnitStyle}"
+                                         Grid.Row="1"
+                                         Grid.Column="3">
+                                <Label Text="{Binding Carbohydrates}"
+                                       Style="{StaticResource ProductStyle}"/>
+                                <Label Text="г"
+                                       Style="{StaticResource ProductStyle}"/>
+                            </StackLayout>
+                            <StackLayout Style="{StaticResource ProductUnitStyle}"
+                                         Grid.Row="1"
+                                         Grid.Column="4">
+                                <Label Text="{Binding Calories}"
+                                       Style="{StaticResource ProductStyle}"/>
+                                <Label Text="кКал"
+                                       Style="{StaticResource ProductStyle}"/>
+                            </StackLayout>
                             <BoxView HeightRequest="1"
                                      BackgroundColor="Black"
                                      Margin="-20,0"
                                      Grid.Row="1"
                                      Grid.ColumnSpan="5"
                                      VerticalOptions="Start"/>
-                            <Label Text="{Binding Category}"
-                                   TextColor="Blue"
-                                   Grid.Row="2"
-                                   Grid.ColumnSpan="5"/>
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>

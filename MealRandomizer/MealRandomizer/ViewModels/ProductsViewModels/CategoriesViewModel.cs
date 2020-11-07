@@ -1,10 +1,10 @@
 ﻿using MealRandomizer.Models;
-using MealRandomizer.Views;
+using MealRandomizer.Views.ProductsViews;
 using System;
 using System.Collections.Generic;
 using Xamarin.Forms;
 
-namespace MealRandomizer.ViewModels
+namespace MealRandomizer.ViewModels.ProductsViewModels
 {
     public class CategoriesViewModel : BaseViewModel
     {

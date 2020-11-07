@@ -1,11 +1,11 @@
 ﻿using MealRandomizer.Service;
-using MealRandomizer.Views;
+using MealRandomizer.Views.ProductsViews;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using Xamarin.Forms;
 
-namespace MealRandomizer.ViewModels
+namespace MealRandomizer.ViewModels.ProductsViewModels
 {
     public class ProductsViewModel : BaseViewModel
     {

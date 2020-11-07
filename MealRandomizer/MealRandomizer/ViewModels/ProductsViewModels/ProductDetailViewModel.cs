@@ -3,7 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
-namespace MealRandomizer.ViewModels
+namespace MealRandomizer.ViewModels.ProductsViewModels
 {
     public class ProductDetailViewModel : BaseViewModel
     {

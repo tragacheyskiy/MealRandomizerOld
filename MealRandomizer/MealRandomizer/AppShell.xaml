@@ -3,6 +3,8 @@
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
        xmlns:d="http://xamarin.com/schemas/2014/forms/design"
        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+       xmlns:recipesViews="clr-namespace:MealRandomizer.Views.RecipesViews"
+       xmlns:productsViews="clr-namespace:MealRandomizer.Views.ProductsViews"
        xmlns:views="clr-namespace:MealRandomizer.Views"
        mc:Ignorable="d"
        x:Class="MealRandomizer.AppShell"
@@ -13,13 +15,13 @@
 
     <TabBar Title="TESTING">
         <Tab Title="Menu" Icon="menu.png">
-            <ShellContent ContentTemplate="{DataTemplate views:RecipesPage}"/>
+            <ShellContent ContentTemplate="{DataTemplate recipesViews:RecipesPage}"/>
         </Tab>
         <Tab Title="Recipes" Icon="recipes.png">
-            <ShellContent ContentTemplate="{DataTemplate views:RecipesPage}"/>
+            <ShellContent ContentTemplate="{DataTemplate recipesViews:RecipesPage}"/>
         </Tab>
         <Tab Title="Products" Icon="products.png">
-            <ShellContent ContentTemplate="{DataTemplate views:CategoriesPage}"/>
+            <ShellContent ContentTemplate="{DataTemplate productsViews:CategoriesPage}"/>
         </Tab>
         <Tab Title="User" Icon="round_account_circle_24.xml">
             <ShellContent ContentTemplate="{DataTemplate views:UserPage}"/>

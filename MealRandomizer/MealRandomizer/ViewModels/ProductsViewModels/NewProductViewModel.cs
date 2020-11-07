@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using Xamarin.Forms;
 
-namespace MealRandomizer.ViewModels
+namespace MealRandomizer.ViewModels.ProductsViewModels
 {
     public class NewProductViewModel : BaseViewModel
     {

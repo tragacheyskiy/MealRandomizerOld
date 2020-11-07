@@ -54,13 +54,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Views\CategoriesPage.xaml.cs">
+    <Compile Update="Views\ProductsViews\CategoriesPage.xaml.cs">
       <DependentUpon>CategoriesPage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\NewProductPage.xaml.cs">
+    <Compile Update="Views\ProductsViews\NewProductPage.xaml.cs">
       <DependentUpon>NewProductPage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="Views\ProductsPage.xaml.cs">
+    <Compile Update="Views\ProductsViews\ProductsPage.xaml.cs">
       <DependentUpon>ProductsPage.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\UserPage.xaml.cs">
@@ -69,26 +69,30 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Views\CategoriesPage.xaml">
+    <EmbeddedResource Update="Views\ProductsViews\CategoriesPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\ProductDetailPage.xaml">
+    <EmbeddedResource Update="Views\ProductsViews\ProductDetailPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\NewProductPage.xaml">
+    <EmbeddedResource Update="Views\ProductsViews\NewProductPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\ProductsPage.xaml">
+    <EmbeddedResource Update="Views\ProductsViews\ProductsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\ProductsSearchPage.xaml">
+    <EmbeddedResource Update="Views\ProductsViews\ProductsSearchPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\RecipesPage.xaml">
+    <EmbeddedResource Update="Views\RecipesViews\RecipesPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\UserPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ViewModels\RecipesViewModels\" />
   </ItemGroup>
 </Project>

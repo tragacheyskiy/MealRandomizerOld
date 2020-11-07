@@ -1,5 +1,5 @@
 ﻿using MealRandomizer.Models;
-using MealRandomizer.ViewModels;
+using MealRandomizer.ViewModels.ProductsViewModels;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -11,9 +11,9 @@ namespace MealRandomizer.Service
     public class ProductsData
     {
         private static Lazy<ProductsData> instance = new Lazy<ProductsData>(() => new ProductsData());
-        
+
         public static ProductsData Instance => instance.Value;
-        
+
         private List<ProductViewModel> Products { get; }
 
         public event Action<ProductsData> ProductsSourceChanged;

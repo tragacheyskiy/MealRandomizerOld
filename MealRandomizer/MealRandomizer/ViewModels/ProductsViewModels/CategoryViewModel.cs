@@ -2,7 +2,7 @@
 using MealRandomizer.Service;
 using System;
 
-namespace MealRandomizer.ViewModels
+namespace MealRandomizer.ViewModels.ProductsViewModels
 {
     public class CategoryViewModel : IComparable<CategoryViewModel>, IEquatable<CategoryViewModel>
     {

@@ -1,8 +1,8 @@
-﻿using MealRandomizer.ViewModels;
+﻿using MealRandomizer.ViewModels.ProductsViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace MealRandomizer.Views
+namespace MealRandomizer.Views.ProductsViews
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CategoriesPage : ContentPage
