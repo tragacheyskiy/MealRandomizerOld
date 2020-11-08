@@ -1,32 +1,28 @@
 ﻿using MealRandomizer.Service;
-using System.Diagnostics;
 using Xamarin.Forms;
 
 namespace MealRandomizer.ViewModels.ProductsViewModels
 {
-    public class NewProductViewModel : BaseViewModel
+    public sealed class NewProductViewModel : BaseViewModel
     {
         public ProductEditViewModel ProductEditVM { get; }
-        public Command CloseButtonCommand { get; private set; }
-        public Command AddButtonCommand { get; private set; }
+        public Command CloseButtonCommand { get; }
+        public Command AddButtonCommand { get; }
 
         public NewProductViewModel(CategoryViewModel currentCategory)
         {
             ProductEditVM = ProductEditViewModel.GetCategoryOnly(currentCategory);
-            InitializeCommands();
-        }
 
-        private void InitializeCommands()
-        {
-            CloseButtonCommand = new Command(async () => await Page.Navigation.PopModalAsync());
+            CloseButtonCommand = new Command(PopPageModal);
+
             AddButtonCommand = new Command(async () =>
             {
-                if (!Page.IsBusy && ProductEditVM.IsInputCorrect)
+                if (!MainPage.IsBusy && ProductEditVM.IsInputCorrect)
                 {
-                    Page.IsBusy = true;
+                    MainPage.IsBusy = true;
                     await ProductsData.Instance.AddProductAsync(ProductEditVM.NewProductVM);
-                    await Page.Navigation.PopModalAsync();
-                    Page.IsBusy = false;
+                    MainPage.IsBusy = false;
+                    PopPageModal();
                 }
             });
         }

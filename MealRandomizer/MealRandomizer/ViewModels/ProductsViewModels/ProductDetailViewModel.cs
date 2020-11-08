@@ -5,7 +5,7 @@ using Xamarin.Forms;
 
 namespace MealRandomizer.ViewModels.ProductsViewModels
 {
-    public class ProductDetailViewModel : BaseViewModel
+    public sealed class ProductDetailViewModel : BaseViewModel
     {
         private const string BackIcon = "round_arrow_back_24.xml";
         private const string EditIcon = "round_edit_24.xml";
@@ -64,29 +64,35 @@ namespace MealRandomizer.ViewModels.ProductsViewModels
         private void InitializeCommands()
         {
             DeleteButtonCommand = new Command(TryDeleteProduct);
+
             BackButtonCommand = new Command(async () =>
             {
-                if (IsEditing)
+                if (IsEditing) 
                 {
                     await CloseEditingState();
-                    return;
+                } 
+                else
+                {
+                    PopPageModal();
                 }
-                await Page.Navigation.PopModalAsync();
             });
+
             EditButtonCommand = new Command(async () =>
             {
                 if (IsEditing && ProductEditVM.IsInputCorrect)
                 {
                     TryUpdateProduct();
-                    return;
+                } 
+                else
+                {
+                    await OpenEditingState();
                 }
-                await OpenEditingState();
             });
         }
 
         private async void TryUpdateProduct()
         {
-            bool isAccepted = await Page.DisplayAlert(null, $"Вы уверены, что хотите изменить {CurrentProduct.Name}?", "Изменить", "Отмена");
+            bool isAccepted = await MainPage.DisplayAlert(null, $"Вы уверены, что хотите изменить {CurrentProduct.Name}?", "Изменить", "Отмена");
             bool isUpdated = false;
             if (isAccepted)
             {
@@ -100,7 +106,7 @@ namespace MealRandomizer.ViewModels.ProductsViewModels
 
         private async void TryDeleteProduct()
         {
-            bool isAccepted = await Page.DisplayAlert(null, $"Вы уверены, что хотите удалить {CurrentProduct.Name}?", "Удалить", "Отмена");
+            bool isAccepted = await MainPage.DisplayAlert(null, $"Вы уверены, что хотите удалить {CurrentProduct.Name}?", "Удалить", "Отмена");
             bool isDeleted = false;
             if (isAccepted)
             {
@@ -108,7 +114,7 @@ namespace MealRandomizer.ViewModels.ProductsViewModels
             }
             if (isDeleted)
             {
-                await Page.Navigation.PopAsync();
+                PopPageModal();
             }
         }
 

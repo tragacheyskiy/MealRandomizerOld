@@ -7,7 +7,7 @@ using Xamarin.Forms;
 
 namespace MealRandomizer.ViewModels.ProductsViewModels
 {
-    public class ProductsViewModel : BaseViewModel
+    public sealed class ProductsViewModel : BaseViewModel
     {
         private bool isClearButtonVisible;
         private List<ProductViewModel> productsSource;
@@ -89,28 +89,21 @@ namespace MealRandomizer.ViewModels.ProductsViewModels
 
         private void InitializeCommands()
         {
-            BackButtonCommand = new Command(async () => await Page.Navigation.PopAsync());
+            BackButtonCommand = new Command(PopPage);
+
             ClearButtonCommand = new Command(() => SearchText = string.Empty);
-            AddButtonCommand = new Command(async () =>
+
+            AddButtonCommand = new Command(() =>
             {
-                if (!Page.IsBusy)
-                {
-                    Page.IsBusy = true;
-                    NewProductPage page = new NewProductPage() { BindingContext = new NewProductViewModel(CurrentCategory) };
-                    await Page.Navigation.PushModalAsync(page);
-                    Page.IsBusy = false;
-                }
+                NewProductPage page = new NewProductPage() { BindingContext = new NewProductViewModel(CurrentCategory) };
+                PushPageModal(page);
             });
-            SelectProductCommand = new Command(async () =>
+
+            SelectProductCommand = new Command(() =>
             {
-                if (!Page.IsBusy)
-                {
-                    Page.IsBusy = true;
-                    ProductDetailPage page = new ProductDetailPage() { BindingContext = new ProductDetailViewModel(SelectedProduct) };
-                    await Page.Navigation.PushModalAsync(page);
-                    SelectedProduct = null;
-                    Page.IsBusy = false;
-                }
+                ProductDetailPage page = new ProductDetailPage() { BindingContext = new ProductDetailViewModel(SelectedProduct) };
+                PushPageModal(page);
+                SelectedProduct = null;
             });
         }
     }

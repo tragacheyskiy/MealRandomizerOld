@@ -3,13 +3,13 @@ using System;
 
 namespace MealRandomizer.Service
 {
-    public sealed class CategoryTranslator
+    public sealed class ProductCategoryTranslator
     {
-        private static readonly Lazy<CategoryTranslator> instance = new Lazy<CategoryTranslator>(() => new CategoryTranslator());
+        private static readonly Lazy<ProductCategoryTranslator> instance = new Lazy<ProductCategoryTranslator>(() => new ProductCategoryTranslator());
 
-        private CategoryTranslator() { }
+        private ProductCategoryTranslator() { }
 
-        public static CategoryTranslator Instance => instance.Value;
+        public static ProductCategoryTranslator Instance => instance.Value;
 
         public string GetTranslatedName(ProductCategory category)
         {

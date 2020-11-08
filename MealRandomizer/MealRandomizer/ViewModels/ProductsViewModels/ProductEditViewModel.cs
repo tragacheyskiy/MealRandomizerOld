@@ -8,7 +8,7 @@ using Xamarin.Forms;
 
 namespace MealRandomizer.ViewModels.ProductsViewModels
 {
-    public class ProductEditViewModel : BaseViewModel
+    public sealed class ProductEditViewModel : BaseViewModel
     {
         private readonly Color HalfOpacityRed = Color.FromHex("#50FF0000");
         private readonly ProductViewModel productVM;

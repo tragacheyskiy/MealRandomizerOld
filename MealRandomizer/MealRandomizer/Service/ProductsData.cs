@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MealRandomizer.Service
 {
-    public class ProductsData
+    internal class ProductsData
     {
         private static Lazy<ProductsData> instance = new Lazy<ProductsData>(() => new ProductsData());
 

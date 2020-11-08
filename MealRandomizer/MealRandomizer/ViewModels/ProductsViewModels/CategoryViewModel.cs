@@ -13,7 +13,7 @@ namespace MealRandomizer.ViewModels.ProductsViewModels
         public CategoryViewModel(ProductCategory category)
         {
             this.category = category;
-            Category = CategoryTranslator.Instance.GetTranslatedName(category);
+            Category = ProductCategoryTranslator.Instance.GetTranslatedName(category);
         }
 
         public ProductCategory GetCategory() => category;

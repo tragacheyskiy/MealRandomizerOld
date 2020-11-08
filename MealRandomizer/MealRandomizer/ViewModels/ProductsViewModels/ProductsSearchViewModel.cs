@@ -7,7 +7,7 @@ using Xamarin.Forms;
 
 namespace MealRandomizer.ViewModels.ProductsViewModels
 {
-    public class ProductsSearchViewModel : BaseViewModel
+    public sealed class ProductsSearchViewModel : BaseViewModel
     {
         private bool isClearButtonVisible;
         private string searchText = string.Empty;
@@ -58,28 +58,13 @@ namespace MealRandomizer.ViewModels.ProductsViewModels
 
         private void InitializeCommands()
         {
-            BackButtonCommand = new Command(async () =>
+            BackButtonCommand = new Command(PopPageModal);
+
+            SelectProductCommand = new Command(() =>
             {
-                if (!Page.IsBusy)
-                {
-                    Page.IsBusy = true;
-                    await Page.Navigation.PopModalAsync();
-                    Page.IsBusy = false;
-                }
-            });
-            SelectProductCommand = new Command(async () =>
-            {
-                if (!Page.IsBusy)
-                {
-                    Page.IsBusy = true;
-                    ProductDetailPage page = new ProductDetailPage()
-                    {
-                        BindingContext = new ProductDetailViewModel(SelectedProduct)
-                    };
-                    await Page.Navigation.PushModalAsync(page);
-                    SelectedProduct = null;
-                    Page.IsBusy = false;
-                }
+                ProductDetailPage page = new ProductDetailPage() { BindingContext = new ProductDetailViewModel(SelectedProduct) };
+                PushPageModal(page);
+                SelectedProduct = null;
             });
         }
     }

@@ -6,7 +6,7 @@ using Xamarin.Forms;
 
 namespace MealRandomizer.ViewModels.ProductsViewModels
 {
-    public class CategoriesViewModel : BaseViewModel
+    internal sealed class CategoriesViewModel : BaseViewModel
     {
         private const string ImagePath = "MealRandomizer.ProductCategoryPics.";
 
@@ -37,39 +37,23 @@ namespace MealRandomizer.ViewModels.ProductsViewModels
 
         private void InitializeCommands()
         {
-            AddButtonCommand = new Command(async () =>
+            AddButtonCommand = new Command(() =>
             {
-                if (!Page.IsBusy)
-                {
-                    Page.IsBusy = true;
-                    NewProductPage page = new NewProductPage() { BindingContext = new NewProductViewModel(categoryDefault) };
-                    await Page.Navigation.PushModalAsync(page);
-                    Page.IsBusy = false;
-                }
+                NewProductPage page = new NewProductPage() { BindingContext = new NewProductViewModel(categoryDefault) };
+                PushPageModal(page);
             });
-            SearchButtonCommand = new Command(async () =>
+
+            SearchButtonCommand = new Command(() =>
             {
-                if (!Page.IsBusy)
-                {
-                    Page.IsBusy = true;
-                    ProductsSearchPage page = new ProductsSearchPage() { BindingContext = new ProductsSearchViewModel(categoryDefault) };
-                    await Page.Navigation.PushModalAsync(page);
-                    Page.IsBusy = false;
-                }
+                ProductsSearchPage page = new ProductsSearchPage() { BindingContext = new ProductsSearchViewModel(categoryDefault) };
+                PushPageModal(page);
             });
-            SelectCategoryCommand = new Command(async () =>
+
+            SelectCategoryCommand = new Command(() =>
             {
-                if (!Page.IsBusy)
-                {
-                    Page.IsBusy = true;
-                    ProductsPage page = new ProductsPage()
-                    {
-                        BindingContext = new ProductsViewModel(SelectedCategory)
-                    };
-                    await Page.Navigation.PushAsync(page);
-                    SelectedCategory = null;
-                    Page.IsBusy = false;
-                }
+                ProductsPage page = new ProductsPage() { BindingContext = new ProductsViewModel(SelectedCategory) };
+                PushPage(page);
+                SelectedCategory = null;
             });
         }
 
