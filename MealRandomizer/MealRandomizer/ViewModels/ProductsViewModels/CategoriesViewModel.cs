@@ -39,21 +39,30 @@ namespace MealRandomizer.ViewModels.ProductsViewModels
         {
             AddButtonCommand = new Command(() =>
             {
-                NewProductPage page = new NewProductPage() { BindingContext = new NewProductViewModel(categoryDefault) };
-                PushPageModal(page);
+                if (!MainPage.IsBusy)
+                {
+                    NewProductPage page = new NewProductPage() { BindingContext = new NewProductViewModel(categoryDefault) };
+                    PushPageModal(page);
+                }
             });
 
             SearchButtonCommand = new Command(() =>
             {
-                ProductsSearchPage page = new ProductsSearchPage() { BindingContext = new ProductsSearchViewModel(categoryDefault) };
-                PushPageModal(page);
+                if (!MainPage.IsBusy)
+                {
+                    ProductsSearchPage page = new ProductsSearchPage() { BindingContext = new ProductsSearchViewModel(categoryDefault) };
+                    PushPageModal(page);
+                }
             });
 
             SelectCategoryCommand = new Command(() =>
             {
-                ProductsPage page = new ProductsPage() { BindingContext = new ProductsViewModel(SelectedCategory) };
-                PushPage(page);
-                SelectedCategory = null;
+                if (!MainPage.IsBusy)
+                {
+                    ProductsPage page = new ProductsPage() { BindingContext = new ProductsViewModel(SelectedCategory) };
+                    PushPage(page);
+                    SelectedCategory = null;
+                }
             });
         }
 

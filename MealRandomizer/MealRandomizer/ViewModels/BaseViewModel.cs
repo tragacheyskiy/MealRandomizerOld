@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace MealRandomizer.ViewModels
@@ -14,30 +15,30 @@ namespace MealRandomizer.ViewModels
 
         protected void PushPageModal(Page page)
         {
-            OccupyPage(async () => await MainPage.Navigation.PushModalAsync(page));
+            OccupyPage(() => MainPage.Navigation.PushModalAsync(page));
         }
 
         protected void PopPageModal()
         {
-            OccupyPage(async () => await MainPage.Navigation.PopModalAsync());
+            OccupyPage(() => MainPage.Navigation.PopModalAsync());
         }
 
         protected void PushPage(Page page)
         {
-            OccupyPage(async () => await MainPage.Navigation.PushAsync(page));
+            OccupyPage(() => MainPage.Navigation.PushAsync(page));
         }
 
         protected void PopPage()
         {
-            OccupyPage(async () => await MainPage.Navigation.PopAsync());
+            OccupyPage(() => MainPage.Navigation.PopAsync());
         }
 
-        private void OccupyPage(Action action)
+        private async void OccupyPage(Func<Task> func)
         {
             if (!MainPage.IsBusy)
             {
                 MainPage.IsBusy = true;
-                action?.Invoke();
+                await func?.Invoke();
                 MainPage.IsBusy = false;
             }
         }

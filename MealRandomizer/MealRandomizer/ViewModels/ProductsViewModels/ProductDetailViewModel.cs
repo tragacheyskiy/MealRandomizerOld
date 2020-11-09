@@ -67,10 +67,10 @@ namespace MealRandomizer.ViewModels.ProductsViewModels
 
             BackButtonCommand = new Command(async () =>
             {
-                if (IsEditing) 
+                if (IsEditing)
                 {
                     await CloseEditingState();
-                } 
+                }
                 else
                 {
                     PopPageModal();

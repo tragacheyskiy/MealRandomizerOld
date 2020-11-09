@@ -62,9 +62,12 @@ namespace MealRandomizer.ViewModels.ProductsViewModels
 
             SelectProductCommand = new Command(() =>
             {
-                ProductDetailPage page = new ProductDetailPage() { BindingContext = new ProductDetailViewModel(SelectedProduct) };
-                PushPageModal(page);
-                SelectedProduct = null;
+                if (!MainPage.IsBusy)
+                {
+                    ProductDetailPage page = new ProductDetailPage() { BindingContext = new ProductDetailViewModel(SelectedProduct) };
+                    PushPageModal(page);
+                    SelectedProduct = null;
+                }
             });
         }
     }
