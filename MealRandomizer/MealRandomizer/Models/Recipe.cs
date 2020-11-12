@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Xamarin.Forms.Internals;
 
 namespace MealRandomizer.Models
 {
@@ -11,15 +12,15 @@ namespace MealRandomizer.Models
         public Nutrients NutrientsTotal { get; private set; }
         public Nutrients NutrientsPerHundredGrams => NutrientsTotal / TotalWeightInGrams * 100f;
         public List<ProductWithWeight> ProductsWithWeight { get; private set; }
-        public uint TotalWeightInGrams { get; private set; }
+        public int TotalWeightInGrams { get; private set; }
 
         public Recipe(string name, string formula, List<ProductWithWeight> products)
         {
             Name = name.ToUpperInvariant();
             Formula = formula;
             ProductsWithWeight = products;
-            UpdateTotalWeight();
-            UpdateNutrients();
+            CountTotalWeight();
+            CountTotalNutrients();
         }
 
         public bool Equals(Recipe other)
@@ -32,8 +33,8 @@ namespace MealRandomizer.Models
             if (!ProductsWithWeight.Exists(pair => pair.Equals(newPair)))
             {
                 ProductsWithWeight.Add(newPair);
-                UpdateTotalWeight();
-                UpdateNutrients();
+                CountTotalWeight();
+                CountTotalNutrients();
             }
         }
 
@@ -42,27 +43,27 @@ namespace MealRandomizer.Models
             if (ProductsWithWeight.Exists(pair => pair.Equals(oldPair)))
             {
                 ProductsWithWeight.Remove(oldPair);
-                UpdateTotalWeight();
-                UpdateNutrients();
+                CountTotalWeight();
+                CountTotalNutrients();
             }
         }
 
-        private void UpdateTotalWeight()
+        private void CountTotalWeight()
         {
             TotalWeightInGrams = 0;
-            ProductsWithWeight.ForEach(pair =>
+            foreach(var pair in ProductsWithWeight)
             {
                 TotalWeightInGrams += pair.WeightInGrams;
-            });
+            }
         }
 
-        private void UpdateNutrients()
+        private void CountTotalNutrients()
         {
             NutrientsTotal = new Nutrients();
-            ProductsWithWeight.ForEach(pair =>
+            foreach(var pair in ProductsWithWeight)
             {
                 NutrientsTotal += pair.Product.NutrientsPerHundredGrams / 100f * pair.WeightInGrams;
-            });
+            }
         }
     }
 }

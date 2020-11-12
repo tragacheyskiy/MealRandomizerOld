@@ -1,4 +1,5 @@
-﻿using MealRandomizer.Service;
+﻿using MealRandomizer.Models;
+using MealRandomizer.Service;
 using MealRandomizer.Views.ProductsViews;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -10,11 +11,11 @@ namespace MealRandomizer.ViewModels.ProductsViewModels
     public sealed class ProductsViewModel : BaseViewModel
     {
         private bool isClearButtonVisible;
-        private List<ProductViewModel> productsSource;
-        private ProductViewModel selectedProduct;
+        private List<Product> productsSource;
+        private Product selectedProduct;
         private string searchText = string.Empty;
 
-        private List<ProductViewModel> ProductsSource
+        private List<Product> ProductsSource
         {
             get => productsSource;
             set
@@ -34,7 +35,7 @@ namespace MealRandomizer.ViewModels.ProductsViewModels
                 Search(searchText);
             }
         }
-        public ObservableCollection<ProductViewModel> Products { get; } = new ObservableCollection<ProductViewModel>();
+        public ObservableCollection<Product> Products { get; } = new ObservableCollection<Product>();
         public bool IsClearButtonVisible
         {
             get => isClearButtonVisible;
@@ -42,7 +43,7 @@ namespace MealRandomizer.ViewModels.ProductsViewModels
         }
         public CategoryViewModel CurrentCategory { get; }
         public ImageSource Image { get; }
-        public ProductViewModel SelectedProduct
+        public Product SelectedProduct
         {
             get => selectedProduct;
             set => SetProperty(ref selectedProduct, value);
@@ -64,52 +65,62 @@ namespace MealRandomizer.ViewModels.ProductsViewModels
         private void Search(string searchText)
         {
             Products.Clear();
+
             if (string.IsNullOrEmpty(searchText))
             {
                 RefreshProducts();
                 return;
             }
-            var result = from productVM in ProductsSource
-                         where productVM.Product.Name.Contains(searchText.ToLowerInvariant())
-                         select productVM;
-            foreach (ProductViewModel productVM in result)
+
+            var result = from product in ProductsSource
+                         where product.Name.Contains(searchText.ToLowerInvariant())
+                         select product;
+
+            foreach (Product product in result)
             {
-                Products.Add(productVM);
+                Products.Add(product);
             }
         }
 
         private void RefreshProducts()
         {
             Products.Clear();
-            foreach (ProductViewModel productVM in ProductsSource)
+
+            foreach (Product product in ProductsSource)
             {
-                Products.Add(productVM);
+                Products.Add(product);
             }
         }
 
         private void InitializeCommands()
         {
-            BackButtonCommand = new Command(PopPage);
+            BackButtonCommand = new Command(() =>
+            {
+                if (MainPage.IsBusy)
+                    return;
+
+                PopPage();
+            });
 
             ClearButtonCommand = new Command(() => SearchText = string.Empty);
 
             AddButtonCommand = new Command(() =>
             {
-                if (!MainPage.IsBusy)
-                {
-                    NewProductPage page = new NewProductPage() { BindingContext = new NewProductViewModel(CurrentCategory) };
-                    PushPageModal(page);
-                }
+                if (MainPage.IsBusy)
+                    return;
+
+                NewProductPage page = new NewProductPage() { BindingContext = new NewProductViewModel(CurrentCategory) };
+                PushPageModal(page);
             });
 
             SelectProductCommand = new Command(() =>
             {
-                if (!MainPage.IsBusy)
-                {
-                    ProductDetailPage page = new ProductDetailPage() { BindingContext = new ProductDetailViewModel(SelectedProduct) };
-                    PushPageModal(page);
-                    SelectedProduct = null;
-                }
+                if (MainPage.IsBusy || SelectedProduct == null)
+                    return;
+
+                ProductDetailPage page = new ProductDetailPage() { BindingContext = new ProductDetailViewModel(SelectedProduct) };
+                PushPageModal(page);
+                SelectedProduct = null;
             });
         }
     }

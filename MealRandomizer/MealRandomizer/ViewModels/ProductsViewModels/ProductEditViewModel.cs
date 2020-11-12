@@ -2,7 +2,6 @@
 using MealRandomizer.Service;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using Xamarin.Forms;
 
@@ -11,7 +10,7 @@ namespace MealRandomizer.ViewModels.ProductsViewModels
     public sealed class ProductEditViewModel : BaseViewModel
     {
         private readonly Color HalfOpacityRed = Color.FromHex("#50FF0000");
-        private readonly ProductViewModel productVM;
+        private readonly Product product;
         private string name;
         private string proteins;
         private string fats;
@@ -24,7 +23,7 @@ namespace MealRandomizer.ViewModels.ProductsViewModels
         private Color caloriesBackgroundColor;
         private Color categoriesBackgroundColor;
 
-        public ProductViewModel NewProductVM { get; private set; }
+        public Product NewProduct { get; private set; }
         public string Name { get => name; set => SetProperty(ref name, value); }
         public bool IsNameFocused
         {
@@ -94,11 +93,11 @@ namespace MealRandomizer.ViewModels.ProductsViewModels
         public CategoryViewModel SelectedCategory { get; set; }
         public bool IsInputCorrect => CheckInput();
 
-        private ProductEditViewModel(CategoryViewModel selectedCategory, ProductViewModel productVM)
+        private ProductEditViewModel(CategoryViewModel selectedCategory, Product product)
         {
-            this.productVM = productVM;
+            this.product = product;
             name = proteins = fats = carbohydrates = calories = "";
-            InitializeFields(productVM);
+            InitializeFields(product);
             CategoriesSource = CategoriesViewModel.Instance.CategoriesSource;
             SelectedCategory = selectedCategory;
         }
@@ -108,19 +107,19 @@ namespace MealRandomizer.ViewModels.ProductsViewModels
             return new ProductEditViewModel(selectedCategory, null);
         }
 
-        public static ProductEditViewModel GetCategoryWithProductVM(CategoryViewModel selectedCategory, ProductViewModel productVM)
+        public static ProductEditViewModel GetCategoryWithProductVM(CategoryViewModel selectedCategory, Product product)
         {
-            return new ProductEditViewModel(selectedCategory, productVM);
+            return new ProductEditViewModel(selectedCategory, product);
         }
 
-        private ProductViewModel GetProductViewModel()
+        private Product GetProduct()
         {
-            return new ProductViewModel(new Product(Name.Trim(), SelectedCategory.GetCategory(), GetNutrients()));
+            return new Product(Name.Trim(), SelectedCategory.GetCategory(), GetNutrients());
         }
 
         public void Refresh()
         {
-            InitializeFields(NewProductVM);
+            InitializeFields(NewProduct);
             IsNameFocused = IsProteinsFocused = IsFatsFocused = IsCarbohydratesFocused = IsCaloriesFocused = IsCategoriesFocused = false;
         }
 
@@ -133,15 +132,15 @@ namespace MealRandomizer.ViewModels.ProductsViewModels
             return new Nutrients(proteins, fats, carbohydrates, calories);
         }
 
-        private void InitializeFields(ProductViewModel productVM)
+        private void InitializeFields(Product product)
         {
-            if (productVM != null)
+            if (product != null)
             {
-                Name = productVM.Name;
-                Proteins = productVM.Proteins;
-                Fats = productVM.Fats;
-                Carbohydrates = productVM.Carbohydrates;
-                Calories = productVM.Calories;
+                Name = product.Name;
+                Proteins = product.NutrientsPerHundredGrams.Proteins.ToString();
+                Fats = product.NutrientsPerHundredGrams.Fats.ToString();
+                Carbohydrates = product.NutrientsPerHundredGrams.Carbohydrates.ToString();
+                Calories = product.NutrientsPerHundredGrams.Calories.ToString();
             }
         }
 
@@ -149,7 +148,7 @@ namespace MealRandomizer.ViewModels.ProductsViewModels
         {
             bool isCorrect = true;
             if (string.IsNullOrWhiteSpace(Name)
-                || productVM == null && ProductsData.Instance.ProductsSource.GetItems().Any(product => string.Equals(product.Name, Name.ToLowerInvariant().Trim(), StringComparison.OrdinalIgnoreCase))
+                || product == null && ProductsData.Instance.ProductsSource.GetItems().Any(product => string.Equals(product.Name, Name.ToLowerInvariant().Trim(), StringComparison.OrdinalIgnoreCase))
                 || !Name.All(c => char.IsLetter(c) || char.IsWhiteSpace(c) || char.IsPunctuation(c)))
             {
                 NameBackgroundColor = HalfOpacityRed;
@@ -184,8 +183,8 @@ namespace MealRandomizer.ViewModels.ProductsViewModels
             {
                 return isCorrect;
             }
-            NewProductVM = GetProductViewModel();
-            if (productVM != null && productVM.Equals(NewProductVM))
+            NewProduct = GetProduct();
+            if (product != null && product.Equals(NewProduct))
             {
                 NameBackgroundColor = ProteinsBackgroundColor = FatsBackgroundColor = CarbohydratesBackgroundColor = CaloriesBackgroundColor = CategoriesBackgroundColor = HalfOpacityRed;
                 isCorrect = false;

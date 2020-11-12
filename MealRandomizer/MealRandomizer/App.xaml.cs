@@ -25,7 +25,7 @@ namespace MealRandomizer
         {
         }
 
-        private static List<Product> GetRandomProducts(int amount)
+        public static List<Product> GetRandomProducts(int amount)
         {
             List<Product> products = new List<Product>();
             Random random = new Random();

@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:local="clr-namespace:MealRandomizer.ViewModels.ProductsViewModels"
+             xmlns:viewModels="clr-namespace:MealRandomizer.ViewModels.ProductsViewModels"
+             xmlns:models="clr-namespace:MealRandomizer.Models"
              mc:Ignorable="d"
              x:Class="MealRandomizer.Views.ProductsViews.ProductsSearchPage">
     <ContentPage.Resources>
@@ -32,13 +33,17 @@
                 <Setter Property="FontSize" Value="15"/>
                 <Setter Property="FontAttributes" Value="Italic"/>
                 <Setter Property="HorizontalTextAlignment" Value="Center"/>
-                <Setter Property="VerticalTextAlignment" Value="Center"/>
+            </Style>
+            <Style x:Key="ProductUnitStyle" TargetType="StackLayout">
+                <Setter Property="Orientation" Value="Horizontal"/>
+                <Setter Property="Spacing" Value="5"/>
+                <Setter Property="HorizontalOptions" Value="Center"/>
             </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
         <Grid RowSpacing="0"
-              x:DataType="local:ProductsSearchViewModel">
+              x:DataType="viewModels:ProductsSearchViewModel">
             <Grid.RowDefinitions>
                 <RowDefinition Height="50"/>
                 <RowDefinition Height="Auto"/>
@@ -94,7 +99,7 @@
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Grid ColumnSpacing="0"
-                              x:DataType="local:ProductViewModel"
+                              x:DataType="models:Product"
                               RowSpacing="0"
                               Padding="20,0">
                             <Label BackgroundColor="{StaticResource DiamondGreenHalfOpacity}"
@@ -106,32 +111,44 @@
                                    HorizontalTextAlignment="Start"
                                    Grid.Row="0"
                                    Grid.ColumnSpan="5"/>
-                            <Label Text="{Binding Proteins}"
-                                   Style="{StaticResource ProductStyle}"
-                                   Grid.Row="1"
-                                   Grid.Column="1"/>
-                            <Label Text="{Binding Fats}"
-                                   Style="{StaticResource ProductStyle}"
-                                   Grid.Row="1"
-                                   Grid.Column="2"/>
-                            <Label Text="{Binding Carbohydrates}"
-                                   Style="{StaticResource ProductStyle}"
-                                   Grid.Row="1"
-                                   Grid.Column="3"/>
-                            <Label Text="{Binding Calories}"
-                                   Style="{StaticResource ProductStyle}"
-                                   Grid.Row="1"
-                                   Grid.Column="4"/>
+                            <StackLayout Style="{StaticResource ProductUnitStyle}"
+                                         Grid.Row="1"
+                                         Grid.Column="1">
+                                <Label Text="{Binding NutrientsPerHundredGrams.Proteins}"
+                                       Style="{StaticResource ProductStyle}"/>
+                                <Label Text="г"
+                                       Style="{StaticResource ProductStyle}"/>
+                            </StackLayout>
+                            <StackLayout Style="{StaticResource ProductUnitStyle}"
+                                         Grid.Row="1"
+                                         Grid.Column="2">
+                                <Label Text="{Binding NutrientsPerHundredGrams.Fats}"
+                                       Style="{StaticResource ProductStyle}"/>
+                                <Label Text="г"
+                                       Style="{StaticResource ProductStyle}"/>
+                            </StackLayout>
+                            <StackLayout Style="{StaticResource ProductUnitStyle}"
+                                         Grid.Row="1"
+                                         Grid.Column="3">
+                                <Label Text="{Binding NutrientsPerHundredGrams.Carbohydrates}"
+                                       Style="{StaticResource ProductStyle}"/>
+                                <Label Text="г"
+                                       Style="{StaticResource ProductStyle}"/>
+                            </StackLayout>
+                            <StackLayout Style="{StaticResource ProductUnitStyle}"
+                                         Grid.Row="1"
+                                         Grid.Column="4">
+                                <Label Text="{Binding NutrientsPerHundredGrams.Calories}"
+                                       Style="{StaticResource ProductStyle}"/>
+                                <Label Text="кКал"
+                                       Style="{StaticResource ProductStyle}"/>
+                            </StackLayout>
                             <BoxView HeightRequest="1"
                                      BackgroundColor="Black"
                                      Margin="-20,0"
                                      Grid.Row="1"
                                      Grid.ColumnSpan="5"
                                      VerticalOptions="Start"/>
-                            <Label Text="{Binding Category}"
-                                   TextColor="Blue"
-                                   Grid.Row="2"
-                                   Grid.ColumnSpan="5"/>
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>

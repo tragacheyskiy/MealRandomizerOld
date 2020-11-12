@@ -15,7 +15,7 @@
 
     <TabBar Title="TESTING">
         <Tab Title="Menu" Icon="menu.png">
-            <ShellContent ContentTemplate="{DataTemplate recipesViews:RecipesPage}"/>
+            <ShellContent ContentTemplate="{DataTemplate views:MenuPage}"/>
         </Tab>
         <Tab Title="Recipes" Icon="recipes.png">
             <ShellContent ContentTemplate="{DataTemplate recipesViews:RecipesPage}"/>

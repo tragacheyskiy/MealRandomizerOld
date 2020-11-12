@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using MealRandomizer.ViewModels.RecipesViewModels;
+using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace MealRandomizer.Views.RecipesViews
@@ -9,6 +10,7 @@ namespace MealRandomizer.Views.RecipesViews
         public RecipesPage()
         {
             InitializeComponent();
+            BindingContext = new RecipesViewModel();
         }
     }
 }

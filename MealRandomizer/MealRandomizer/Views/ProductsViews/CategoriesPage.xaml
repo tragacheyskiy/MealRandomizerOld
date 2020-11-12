@@ -7,7 +7,7 @@
              mc:Ignorable="d"
              x:Class="MealRandomizer.Views.ProductsViews.CategoriesPage">
     <ContentPage.Resources>
-        <Style TargetType="StackLayout">
+        <Style TargetType="Grid">
             <Setter Property="VisualStateManager.VisualStateGroups">
                 <VisualStateGroupList>
                     <VisualStateGroup x:Name="CommonStates">
@@ -60,11 +60,12 @@
                 </CollectionView.ItemsLayout>
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <StackLayout Padding="5"
-                                     x:DataType="local:CategoryWithImageViewModel">
-                            <Frame CornerRadius="10"
-                                   Padding="0"
-                                   HasShadow="False">
+                        <Grid Padding="5">
+                            <Frame
+                                CornerRadius="10"
+                                Padding="0"
+                                HasShadow="False"
+                                x:DataType="local:CategoryWithImageViewModel">
                                 <Grid>
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="95"/>
@@ -83,7 +84,7 @@
                                            Grid.Row="0"/>
                                 </Grid>
                             </Frame>
-                        </StackLayout>
+                        </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>

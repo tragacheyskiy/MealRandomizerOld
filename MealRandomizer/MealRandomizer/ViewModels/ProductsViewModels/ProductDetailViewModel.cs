@@ -1,4 +1,5 @@
-﻿using MealRandomizer.Service;
+﻿using MealRandomizer.Models;
+using MealRandomizer.Service;
 using System.Threading;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -17,9 +18,9 @@ namespace MealRandomizer.ViewModels.ProductsViewModels
         private double opacity = 1.0;
         private ImageSource backButtonSource = BackIcon;
         private ImageSource editButtonSource = EditIcon;
-        private ProductViewModel currentProduct;
+        private Product currentProduct;
 
-        public ProductViewModel CurrentProduct
+        public Product CurrentProduct
         {
             get => currentProduct;
             private set => SetProperty(ref currentProduct, value);
@@ -54,10 +55,10 @@ namespace MealRandomizer.ViewModels.ProductsViewModels
         public Command DeleteButtonCommand { get; private set; }
         public Command EditButtonCommand { get; private set; }
 
-        public ProductDetailViewModel(ProductViewModel selectedProduct)
+        public ProductDetailViewModel(Product selectedProduct)
         {
             CurrentProduct = selectedProduct;
-            ProductEditVM = ProductEditViewModel.GetCategoryWithProductVM(CurrentProduct.Category, CurrentProduct);
+            ProductEditVM = ProductEditViewModel.GetCategoryWithProductVM(new CategoryViewModel(selectedProduct.Category), selectedProduct);
             InitializeCommands();
         }
 
@@ -96,7 +97,7 @@ namespace MealRandomizer.ViewModels.ProductsViewModels
             bool isUpdated = false;
             if (isAccepted)
             {
-                isUpdated = await ProductsData.Instance.UpdateProductAsync(CurrentProduct, CurrentProduct = ProductEditVM.NewProductVM);
+                isUpdated = await ProductsData.Instance.UpdateProductAsync(CurrentProduct, CurrentProduct = ProductEditVM.NewProduct);
             }
             if (isUpdated)
             {

@@ -13,14 +13,23 @@ namespace MealRandomizer.ViewModels.ProductsViewModels
         {
             ProductEditVM = ProductEditViewModel.GetCategoryOnly(currentCategory);
 
-            CloseButtonCommand = new Command(PopPageModal);
+            CloseButtonCommand = new Command(() =>
+            {
+                if (MainPage.IsBusy)
+                    return;
+
+                PopPageModal();
+            });
 
             AddButtonCommand = new Command(async () =>
             {
-                if (!MainPage.IsBusy && ProductEditVM.IsInputCorrect)
+                if (MainPage.IsBusy)
+                    return;
+
+                if (ProductEditVM.IsInputCorrect)
                 {
                     MainPage.IsBusy = true;
-                    await ProductsData.Instance.AddProductAsync(ProductEditVM.NewProductVM);
+                    await ProductsData.Instance.AddProductAsync(ProductEditVM.NewProduct);
                     MainPage.IsBusy = false;
                     PopPageModal();
                 }

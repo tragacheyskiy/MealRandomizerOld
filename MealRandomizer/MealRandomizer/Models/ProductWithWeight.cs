@@ -3,9 +3,9 @@
     public class ProductWithWeight
     {
         public Product Product { get; }
-        public uint WeightInGrams { get; }
+        public int WeightInGrams { get; }
 
-        public ProductWithWeight(Product product, uint weightInGrams)
+        public ProductWithWeight(Product product, int weightInGrams)
         {
             Product = product;
             WeightInGrams = weightInGrams;

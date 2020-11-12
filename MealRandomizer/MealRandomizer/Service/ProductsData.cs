@@ -14,7 +14,7 @@ namespace MealRandomizer.Service
 
         public static ProductsData Instance => instance.Value;
 
-        private List<ProductViewModel> Products { get; }
+        private List<Product> Products { get; }
 
         public event Action<ProductsData> ProductsSourceChanged;
 
@@ -23,54 +23,47 @@ namespace MealRandomizer.Service
         private ProductsData()
         {
             ProductsSource = new DataStore<Product>("Products");
-            Products = GetProducts();
+            Products = ProductsSource.GetItems();
         }
 
-        public List<ProductViewModel> GetProductsByCategory(CategoryViewModel category)
+        public List<Product> GetProductsByCategory(CategoryViewModel categoryVM)
         {
-            if (category.GetCategory() == ProductCategory.ALL)
+            ProductCategory category = categoryVM.GetCategory();
+
+            if (category.Equals(ProductCategory.ALL))
             {
                 return Products;
             }
-            var productsByCategory = from productVM in Products
-                                     where productVM.Category.Equals(category)
-                                     select productVM;
+
+            var productsByCategory = from product in Products
+                                     where product.Category.Equals(category)
+                                     select product;
             return productsByCategory.ToList();
         }
 
-        public Task<bool> UpdateProductAsync(ProductViewModel productVM, ProductViewModel newProductVM)
+        public Task<bool> UpdateProductAsync(Product product, Product newProduct)
         {
-            Products.Remove(productVM);
-            Products.Add(newProductVM);
+            Products.Remove(product);
+            Products.Add(newProduct);
             Products.Sort();
             OnProductsSourceChanged();
-            return ProductsSource.UpdateItemAsync(productVM.Product, newProductVM.Product);
+            return ProductsSource.UpdateItemAsync(product, newProduct);
         }
 
-        public Task<bool> AddProductAsync(ProductViewModel productVM)
+        public Task<bool> AddProductAsync(Product product)
         {
-            Products.Add(productVM);
+            Products.Add(product);
             Products.Sort();
             OnProductsSourceChanged();
-            return ProductsSource.AddItemAsync(productVM.Product);
+            return ProductsSource.AddItemAsync(product);
         }
 
-        public Task<bool> DeleteProductAsync(ProductViewModel productVM)
+        public Task<bool> DeleteProductAsync(Product product)
         {
-            Products.Remove(productVM);
+            Products.Remove(product);
             Products.Sort();
             OnProductsSourceChanged();
-            return ProductsSource.DeleteItemAsync(productVM.Product);
-        }
-
-        private List<ProductViewModel> GetProducts()
-        {
-            List<ProductViewModel> products = new List<ProductViewModel>();
-            foreach (Product product in ProductsSource.GetItems())
-            {
-                products.Add(new ProductViewModel(product));
-            }
-            return products;
+            return ProductsSource.DeleteItemAsync(product);
         }
 
         private void OnProductsSourceChanged()
